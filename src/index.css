@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  /* Color System Extracted From Logo */
+  --color-bg: #050810;              /* near-black, cooler than pure black */
+  --color-surface: #0b1120;         /* dark navy card/section backgrounds */
+  --color-surface-2: #111c35;       /* elevated surfaces, nav bg on scroll */
+  --color-border: rgba(0, 180, 255, 0.10); /* subtle cyan border */
+  
+  --color-accent: #00c8f8;          /* cyan — primary accent from logo arrow tip */
+  --color-accent-2: #1a56db;        /* electric blue — from logo arrow base */
+  --color-accent-glow: rgba(0, 200, 248, 0.15); /* glow for hover states */
+  
+  --color-text-primary: #f0f4ff;     /* near-white with a cool blue tint */
+  --color-text-secondary: #7a90b8;   /* muted navy-grey for body/descriptions */
+  --color-text-muted: #3d5070;       /* disabled states, placeholders */
+
+  /* Typography System */
+  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+@theme {
+  --color-brand-charcoal: var(--color-bg);
+  --color-brand-charcoal-dark: var(--color-bg);
+  --color-brand-charcoal-light: var(--color-surface);
+  --color-brand-offwhite: var(--color-text-primary);
+  --color-brand-gray: var(--color-text-secondary);
+  --color-brand-gold: var(--color-accent);
+  --color-brand-gold-dark: var(--color-accent-2);
+  --color-brand-gold-light: var(--color-accent);
+  --color-brand-amber: var(--color-accent-2);
+  --color-brand-sand: var(--color-accent);
+
+  --font-serif: var(--font-heading);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-heading);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.65;
+}
+
+/* Typography Base Elements */
+h1, h2 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+p {
+  font-family: var(--font-sans);
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* Buttons (primary) */
+button.bg-brand-gold,
+a.bg-brand-gold,
+.btn-primary {
+  background: linear-gradient(135deg, #00c8f8 0%, #1a56db 100%) !important;
+  color: #050810 !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  transition: all 0.3s ease !important;
+}
+
+button.bg-brand-gold:hover,
+a.bg-brand-gold:hover,
+.btn-primary:hover {
+  opacity: 0.95 !important;
+  filter: brightness(1.1) !important;
+  background: linear-gradient(135deg, #00c8f8 0%, #1a56db 100%) !important;
+  box-shadow: 0 0 15px rgba(0, 200, 248, 0.4) !important;
+}
+
+/* Buttons (ghost/secondary) */
+button.border-brand-offwhite\/10,
+button.border-brand-offwhite\/15,
+button.border-brand-offwhite\/5,
+button.border-brand-offwhite\/20,
+a.border-brand-offwhite\/10,
+a.border-brand-offwhite\/15 {
+  border: 1px solid var(--color-accent) !important;
+  color: var(--color-accent) !important;
+  background: transparent !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  transition: all 0.3s ease !important;
+}
+
+button.border-brand-offwhite\/10:hover,
+button.border-brand-offwhite\/15:hover,
+button.border-brand-offwhite\/5:hover,
+button.border-brand-offwhite\/20:hover,
+a.border-brand-offwhite\/10:hover,
+a.border-brand-offwhite\/15:hover {
+  background: var(--color-accent-glow) !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-accent) !important;
+  box-shadow: 0 0 15px rgba(0, 200, 248, 0.25) !important;
+}
+
+/* Section labels / eyebrows (small caps above headings) */
+.font-mono.text-brand-gold.uppercase,
+.eyebrow {
+  font-family: var(--font-mono) !important;
+  text-transform: uppercase !important;
+  color: var(--color-accent) !important;
+  letter-spacing: 0.15em !important;
+  font-size: 0.75rem !important;
+}
+
+/* Custom Webkit Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-2);
+}
+
+/* Premium Tailwind v4 Utility Directives */
+@utility text-gradient-gold {
+  background: linear-gradient(135deg, #00c8f8 0%, #1a56db 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-gradient-amber {
+  background: linear-gradient(135deg, #00c8f8 0%, #1a56db 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility glass-card {
+  background: rgba(11, 17, 32, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+}
+
+@utility glass-panel {
+  background: rgba(17, 28, 53, 0.9);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(0, 180, 255, 0.05);
+}
+
+@utility glow-gold {
+  box-shadow: 0 0 50px var(--color-accent-glow);
+}
+
+@utility glow-gold-strong {
+  box-shadow: 0 0 30px rgba(0, 200, 248, 0.25);
+}
+
+/* Fading Stripe-like grid background overlay */
+@utility grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(0, 180, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 180, 255, 0.02) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(circle 800px at 50% 50%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 800px at 50% 50%, black 40% ,transparent 100%);
+}
+
+/* Radial spotlight effect behind heroes */
+@utility radial-spotlight {
+  background: radial-gradient(circle 600px at 50% -100px, rgba(0, 200, 248, 0.08), transparent 80%);
+}
+
+/* Code block terminal styles */
+.terminal-window {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+}
+
+/* Keyframe animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.08;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.18;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 12s infinite ease-in-out;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Layout resets */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+}
