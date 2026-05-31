@@ -49,6 +49,60 @@ function StatCounter({ value, label }: StatCounterProps) {
 }
 
 export default function Home({ setCurrentPage }: HomeProps) {
+  // Framer Motion entry variants for a premium look
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.15,
+      }
+    }
+  } as const;
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 80,
+        damping: 14,
+      }
+    }
+  } as const;
+
+  const mockupVariants = {
+    hidden: { opacity: 0, y: 35, scale: 0.97 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 45,
+        damping: 15,
+        delay: 0.7,
+      }
+    }
+  } as const;
+
+  // Scroll reveal variants
+  const scrollRevealVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 15,
+      }
+    }
+  } as const;
+
   const [activeServiceTab, setActiveServiceTab] = useState('ai')
   const [activeProductTab, setActiveProductTab] = useState('ams')
   const [selectedAssetId, setSelectedAssetId] = useState<string | null>('AST-9021')
@@ -155,41 +209,55 @@ export default function Home({ setCurrentPage }: HomeProps) {
         <div className="relative max-w-[1000px] mx-auto px-6 py-20 lg:py-28 text-center">
           <CornerMarkers />
           
-          <div className="max-w-[800px] mx-auto flex flex-col items-center gap-6 mt-4">
-            <div className="inline-flex items-center gap-2 select-none">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="max-w-[800px] mx-auto flex flex-col items-center gap-6 mt-4"
+          >
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 select-none">
               <div className="w-[14px] h-[6px] bg-[#0055FF] rounded-[1px]" />
               <span className="font-sans text-[13px] font-bold text-[#1A1A1A] tracking-tight uppercase">
                 IT Solutions WLL | Doha (HQ) & Hyderabad
               </span>
-            </div>
+            </motion.div>
 
-            <h1 className="twenty-serif text-[42px] sm:text-[60px] md:text-[76px] lg:text-[84px] leading-[1.05] tracking-[-0.03em] text-[#1A1A1A] font-normal text-center">
+            <motion.h1 variants={itemVariants} className="twenty-serif text-[42px] sm:text-[60px] md:text-[76px] lg:text-[84px] leading-[1.05] tracking-[-0.03em] text-[#1A1A1A] font-normal text-center">
               We architect <em className="italic font-normal">high-performance</em> digital systems.
-            </h1>
+            </motion.h1>
 
-            <p className="font-sans text-[15px] sm:text-[18px] leading-[1.65] text-[#6B6B6B] max-w-[620px] text-center mt-2">
+            <motion.p variants={itemVariants} className="font-sans text-[15px] sm:text-[18px] leading-[1.65] text-[#6B6B6B] max-w-[620px] text-center mt-2">
               Alif Info Tech engineers reliable database systems, certified ERP integrations, custom cloud applications, and AI pipelines to optimize B2B workflows across the Gulf region and India.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 justify-center">
-              <button
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-3 pt-4 justify-center">
+              <motion.button
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => handleLinkClick('solutions')}
-                className="h-[40px] px-6 bg-[#1A1A1A] text-white text-[11px] font-bold tracking-[0.12em] rounded-[3px] hover:bg-[#2e2e2e] active:scale-[0.98] transition-all cursor-pointer uppercase shadow-[3px_3px_0px_rgba(26,26,26,0.15)] flex items-center justify-center gap-1.5"
+                className="h-[40px] px-6 bg-[#1A1A1A] text-white text-[11px] font-bold tracking-[0.12em] rounded-[3px] hover:bg-[#2e2e2e] transition-all cursor-pointer uppercase shadow-[3px_3px_0px_rgba(26,26,26,0.15)] flex items-center justify-center gap-1.5"
               >
                 <span>Explore Solutions Blueprints</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => handleLinkClick('contact')}
-                className="h-[40px] px-6 bg-transparent text-[#1A1A1A] border border-[#1A1A1A] text-[11px] font-bold tracking-[0.12em] rounded-[3px] hover:bg-[#1A1A1A]/5 active:scale-[0.98] transition-all cursor-pointer uppercase flex items-center justify-center"
+                className="h-[40px] px-6 bg-transparent text-[#1A1A1A] border border-[#1A1A1A] text-[11px] font-bold tracking-[0.12em] rounded-[3px] hover:bg-[#1A1A1A]/5 transition-all cursor-pointer uppercase flex items-center justify-center"
               >
                 Request Consultation
-              </button>
-            </div>
-          </div>
+              </motion.button>
+            </motion.div>
+          </motion.div>
 
           {/* Browser Interface Mockup - Representing Alif Core Dashboard */}
-          <div className="mt-16 w-full max-w-[860px] mx-auto bg-white border border-[#D8D8D4] rounded-[10px] shadow-[0_20px_50px_rgba(0,0,0,0.04)] overflow-hidden text-left relative z-10">
+          <motion.div 
+            variants={mockupVariants}
+            initial="hidden"
+            animate="visible"
+            className="mt-16 w-full max-w-[860px] mx-auto bg-white border border-[#D8D8D4] rounded-[10px] shadow-[0_20px_50px_rgba(0,0,0,0.04)] overflow-hidden text-left relative z-10"
+          >
             <div className="absolute top-0 right-0 w-36 h-36 dither-pattern pointer-events-none" />
             
             {/* Apple header style */}
@@ -250,12 +318,18 @@ export default function Home({ setCurrentPage }: HomeProps) {
                 </tbody>
               </table>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* 2. STATS BAR (Precise Monospace Design) */}
-      <section className="bg-[#EBEBEB]/50 py-10 px-6 border-b border-[#D8D8D4] text-center relative select-none">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={scrollRevealVariants}
+        className="bg-[#EBEBEB]/50 py-10 px-6 border-b border-[#D8D8D4] text-center relative select-none"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <StatCounter value="10+" label="Years Active Operations" />
@@ -264,10 +338,16 @@ export default function Home({ setCurrentPage }: HomeProps) {
             <StatCounter value="7+" label="Standard ERP Integrators" />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 3. SERVICES SECTION (Desktop Accordion, Mobile Horizontal Scroll) */}
-      <section className="relative py-24 px-6 z-10 border-b border-[#D8D8D4]">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={scrollRevealVariants}
+        className="relative py-24 px-6 z-10 border-b border-[#D8D8D4]"
+      >
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-8 space-y-4">
@@ -394,10 +474,16 @@ export default function Home({ setCurrentPage }: HomeProps) {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 4. PRODUCT PLATFORMS (Distinct Personalities & Mockups) */}
-      <section className="relative py-24 px-6 z-10 border-b border-[#D8D8D4] bg-[#EBEBEB]/30">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={scrollRevealVariants}
+        className="relative py-24 px-6 z-10 border-b border-[#D8D8D4] bg-[#EBEBEB]/30"
+      >
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="text-left space-y-4 max-w-2xl">
             <div className="inline-flex items-center gap-2 select-none">
@@ -687,10 +773,16 @@ export default function Home({ setCurrentPage }: HomeProps) {
             </AnimatePresence>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 5. STRATEGIC ERP PARTNERS (Trust From Specificity) */}
-      <section className="relative py-24 px-6 z-10 text-left">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={scrollRevealVariants}
+        className="relative py-24 px-6 z-10 text-left"
+      >
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="text-left space-y-4">
             <div className="inline-flex items-center gap-2 select-none">
@@ -734,10 +826,16 @@ export default function Home({ setCurrentPage }: HomeProps) {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 6. WHY CHOOSE US (Editorial Conviction Writing) */}
-      <section className="relative py-24 px-6 z-10 border-t border-[#D8D8D4] bg-[#EBEBEB]/50 text-left">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={scrollRevealVariants}
+        className="relative py-24 px-6 z-10 border-t border-[#D8D8D4] bg-[#EBEBEB]/50 text-left"
+      >
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-5 space-y-4 text-left">
@@ -785,10 +883,17 @@ export default function Home({ setCurrentPage }: HomeProps) {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 7. CONTACT SECTION (Split Column Layout) */}
-      <section id="contact" className="relative py-24 px-6 z-10 border-t border-[#D8D8D4]">
+      <motion.section 
+        id="contact"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={scrollRevealVariants}
+        className="relative py-24 px-6 z-10 border-t border-[#D8D8D4]"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             
@@ -932,7 +1037,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
             
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   )
 }

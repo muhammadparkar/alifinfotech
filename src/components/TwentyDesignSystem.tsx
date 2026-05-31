@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, ArrowLeft, Plus, Minus } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 // Custom inline SVG icons for visual design system (eliminates strict TS/lucide errors)
 const GithubIcon = ({ className = 'w-4 h-4' }: { className?: string }) => (
@@ -641,17 +642,31 @@ export const HeroDecorationBars = ({ side }: { side: 'left' | 'right' | 'both' }
   
   const renderBars = (align: 'left' | 'right') => (
     <div className={`absolute inset-y-0 ${align === 'left' ? 'left-0' : 'right-0'} hidden lg:flex flex-col justify-between py-6 z-0 select-none pointer-events-none`}>
-      {bars.map((width, i) => (
-        <div 
-          key={i} 
-          className="h-[2px] bg-[#0055FF]" 
-          style={{ 
-            width: `${width}px`, 
-            opacity: 0.12 + (i % 6) * 0.06, // subtle and elegant side background feel
-            marginLeft: align === 'right' ? 'auto' : undefined 
-          }}
-        />
-      ))}
+      {bars.map((width, i) => {
+        const opacity = 0.12 + (i % 6) * 0.06;
+        return (
+          <motion.div 
+            key={i} 
+            className="h-[2px] bg-[#0055FF]" 
+            initial={{ x: align === 'left' ? -width - 20 : width + 20, opacity: 0 }}
+            animate={{ x: 0, opacity: [opacity * 0.6, opacity, opacity * 1.5, opacity * 0.6] }}
+            transition={{ 
+              x: { type: 'spring', stiffness: 50, damping: 14, delay: 0.01 * i },
+              opacity: { 
+                repeat: Infinity, 
+                duration: 6 + (i % 6) * 1.5, 
+                ease: "easeInOut",
+                delay: 0.5 + 0.01 * i 
+              }
+            }}
+            style={{ 
+              width: `${width}px`, 
+              marginLeft: align === 'right' ? 'auto' : undefined,
+              transformOrigin: align === 'left' ? 'left' : 'right'
+            }}
+          />
+        );
+      })}
     </div>
   );
 
