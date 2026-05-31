@@ -37,7 +37,7 @@ function StatCounter({ value, label }: StatCounterProps) {
 
   return (
     <div className="text-left group relative p-6 border-l border-[#D8D8D4] first:border-0 font-sans">
-      <div className="text-4xl md:text-5xl font-bold text-[#4444FF] tracking-tight group-hover:translate-x-0.5 transition-transform duration-300">
+      <div className="text-4xl md:text-5xl font-bold text-[#0055FF] tracking-tight group-hover:translate-x-0.5 transition-transform duration-300">
         {count}
         {suffix}
       </div>
@@ -157,7 +157,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
           
           <div className="max-w-[800px] mx-auto flex flex-col items-center gap-6 mt-4">
             <div className="inline-flex items-center gap-2 select-none">
-              <div className="w-[14px] h-[6px] bg-[#4444FF] rounded-[1px]" />
+              <div className="w-[14px] h-[6px] bg-[#0055FF] rounded-[1px]" />
               <span className="font-sans text-[13px] font-bold text-[#1A1A1A] tracking-tight uppercase">
                 IT Solutions WLL | Doha (HQ) & Hyderabad
               </span>
@@ -210,7 +210,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
               <div className="flex items-center justify-between pb-4 border-b border-[#D8D8D4] mb-4">
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-[14px] text-[#1A1A1A]">Enterprise Database Cluster</span>
-                  <span className="bg-[#EBEBEB] text-[#4444FF] px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase">Active</span>
+                  <span className="bg-[#EBEBEB] text-[#0055FF] px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase">Active</span>
                 </div>
                 <div className="flex gap-2">
                   <span className="text-[10px] font-bold text-[#6B6B6B] uppercase">DOHA NETWORK RELAY: OK</span>
@@ -235,13 +235,13 @@ export default function Home({ setCurrentPage }: HomeProps) {
                   ].map((row, i) => (
                     <tr key={i} className="border-b border-[#D8D8D4]/40 hover:bg-[#F5F4F0]/50 transition-colors">
                       <td className="py-3 font-bold text-[#1A1A1A] flex items-center gap-2">
-                        <div className="w-3.5 h-3.5 bg-[#4444FF] rounded-[2px]" />
+                        <div className="w-3.5 h-3.5 bg-[#0055FF] rounded-[2px]" />
                         {row.endpoint}
                       </td>
                       <td className="py-3 text-[#6B6B6B]">{row.sync}</td>
                       <td className="py-3 font-semibold text-[#1A1A1A]">{row.ledger}</td>
                       <td className="py-3">
-                        <span className="px-2.5 py-0.5 bg-[#4444FF]/10 text-[#4444FF] border border-[#4444FF]/20 rounded-full font-bold text-[9px] uppercase tracking-wider">
+                        <span className="px-2.5 py-0.5 bg-[#0055FF]/10 text-[#0055FF] border border-[#0055FF]/20 rounded-full font-bold text-[9px] uppercase tracking-wider">
                           {row.status}
                         </span>
                       </td>
@@ -272,7 +272,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-8 space-y-4">
               <div className="inline-flex items-center gap-2 select-none">
-                <div className="w-[14px] h-[6px] bg-[#4444FF] rounded-[1px]" />
+                <div className="w-[14px] h-[6px] bg-[#0055FF] rounded-[1px]" />
                 <span className="font-sans text-[13px] font-bold text-[#1A1A1A] tracking-tight">
                   ENGINEERING CAPABILITIES
                 </span>
@@ -284,7 +284,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
             <div className="lg:col-span-4 lg:text-right">
               <button
                 onClick={() => handleLinkClick('services')}
-                className="text-[#4444FF] hover:text-[#5555FF] text-xs font-bold font-sans tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer group lg:justify-end uppercase"
+                className="text-[#0055FF] hover:text-[#3377FF] text-xs font-bold font-sans tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer group lg:justify-end uppercase"
               >
                 VIEW DETAILED CAPABILITIES
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -307,13 +307,13 @@ export default function Home({ setCurrentPage }: HomeProps) {
                   }`}
                 >
                   <div className="flex items-center gap-4">
-                    <svc.icon className={`w-5 h-5 ${activeServiceTab === svc.id ? 'text-[#4444FF]' : 'text-[#6B6B6B]/60'}`} />
+                    <svc.icon className={`w-5 h-5 ${activeServiceTab === svc.id ? 'text-[#0055FF]' : 'text-[#6B6B6B]/60'}`} />
                     <div>
                       <h4 className="text-sm font-bold leading-tight">{svc.title}</h4>
                       <span className="text-[9px] text-[#6B6B6B] font-mono block mt-0.5 uppercase tracking-wider">{svc.subtitle}</span>
                     </div>
                   </div>
-                  <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${activeServiceTab === svc.id ? 'translate-x-0.5 text-[#4444FF]' : 'text-[#6B6B6B]/40'}`} />
+                  <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${activeServiceTab === svc.id ? 'translate-x-0.5 text-[#0055FF]' : 'text-[#6B6B6B]/40'}`} />
                 </button>
               ))}
             </div>
@@ -337,7 +337,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                       className="space-y-6 flex-grow flex flex-col justify-between relative z-10"
                     >
                       <div className="space-y-2 text-left">
-                        <span className="text-[9px] font-bold text-[#4444FF] bg-[#4444FF]/10 px-2.5 py-1 rounded-full border border-[#4444FF]/25 uppercase tracking-wider">
+                        <span className="text-[9px] font-bold text-[#0055FF] bg-[#0055FF]/10 px-2.5 py-1 rounded-full border border-[#0055FF]/25 uppercase tracking-wider">
                           {svc.tech}
                         </span>
                         <h3 className="twenty-serif text-2xl text-[#1A1A1A] pt-4 leading-tight">{svc.title}</h3>
@@ -347,7 +347,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-[#D8D8D4]/60 text-left">
                         {svc.bullets.map((bullet, idx) => (
                           <div key={idx} className="p-3.5 rounded-[4px] bg-[#F5F4F0] border border-[#D8D8D4] flex items-start gap-2.5">
-                            <Check className="w-3.5 h-3.5 text-[#4444FF] shrink-0 mt-0.5" />
+                            <Check className="w-3.5 h-3.5 text-[#0055FF] shrink-0 mt-0.5" />
                             <span className="text-[11px] text-[#1A1A1A] font-semibold leading-snug">{bullet}</span>
                           </div>
                         ))}
@@ -380,14 +380,14 @@ export default function Home({ setCurrentPage }: HomeProps) {
               >
                 <CornerMarkers />
                 <div className="space-y-3">
-                  <div className="w-9 h-9 rounded-[4px] bg-[#F5F4F0] border border-[#D8D8D4] flex items-center justify-center text-[#4444FF]">
+                  <div className="w-9 h-9 rounded-[4px] bg-[#F5F4F0] border border-[#D8D8D4] flex items-center justify-center text-[#0055FF]">
                     <svc.icon className="w-4.5 h-4.5" />
                   </div>
                   <h3 className="text-base font-bold text-[#1A1A1A]">{svc.title}</h3>
-                  <span className="text-[9px] text-[#4444FF] font-bold uppercase tracking-wider block -mt-1">{svc.subtitle}</span>
+                  <span className="text-[9px] text-[#0055FF] font-bold uppercase tracking-wider block -mt-1">{svc.subtitle}</span>
                   <p className="text-xs text-[#6B6B6B] leading-relaxed">{svc.desc}</p>
                 </div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-[#4444FF] flex items-center gap-1">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#0055FF] flex items-center gap-1">
                   Scope Parameters <ChevronRight className="w-3 h-3" />
                 </div>
               </div>
@@ -401,7 +401,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="text-left space-y-4 max-w-2xl">
             <div className="inline-flex items-center gap-2 select-none">
-              <div className="w-[14px] h-[6px] bg-[#4444FF] rounded-[1px]" />
+              <div className="w-[14px] h-[6px] bg-[#0055FF] rounded-[1px]" />
               <span className="font-sans text-[13px] font-bold text-[#1A1A1A] tracking-tight uppercase">
                 Alif Software Core
               </span>
@@ -429,7 +429,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                 }}
                 className={`py-4 px-6 text-xs font-bold font-sans tracking-wider transition-all border-b-2 cursor-pointer shrink-0 uppercase ${
                   activeProductTab === t.id
-                    ? 'border-[#4444FF] text-[#4444FF]'
+                    ? 'border-[#0055FF] text-[#0055FF]'
                     : 'border-transparent text-[#6B6B6B] hover:text-[#1A1A1A]'
                 }`}
               >
@@ -454,7 +454,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                   className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10"
                 >
                   <div className="lg:col-span-6 space-y-6">
-                    <div className="text-[9px] font-bold text-[#4444FF] bg-[#4444FF]/10 px-2.5 py-1 rounded-full border border-[#4444FF]/25 uppercase tracking-wider inline-block">
+                    <div className="text-[9px] font-bold text-[#0055FF] bg-[#0055FF]/10 px-2.5 py-1 rounded-full border border-[#0055FF]/25 uppercase tracking-wider inline-block">
                       Module: Calibration & Licensing audits
                     </div>
                     <h3 className="twenty-serif text-2xl sm:text-3xl text-[#1A1A1A]">Alif Asset Management System</h3>
@@ -463,13 +463,13 @@ export default function Home({ setCurrentPage }: HomeProps) {
                     </p>
                     <ul className="space-y-2.5 text-xs text-[#1A1A1A]">
                       <li className="flex items-center gap-2 font-semibold">
-                        <Check className="w-4 h-4 text-[#4444FF]" /> QR/Barcode label scanner integrations.
+                        <Check className="w-4 h-4 text-[#0055FF]" /> QR/Barcode label scanner integrations.
                       </li>
                       <li className="flex items-center gap-2 font-semibold">
-                        <Check className="w-4 h-4 text-[#4444FF]" /> Auto alerts on software license expirations.
+                        <Check className="w-4 h-4 text-[#0055FF]" /> Auto alerts on software license expirations.
                       </li>
                       <li className="flex items-center gap-2 font-semibold">
-                        <Check className="w-4 h-4 text-[#4444FF]" /> Preventative hardware maintenance calendars.
+                        <Check className="w-4 h-4 text-[#0055FF]" /> Preventative hardware maintenance calendars.
                       </li>
                     </ul>
                     <button
@@ -483,7 +483,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                   {/* AMS High Fidelity mockup */}
                   <div className="lg:col-span-6 p-5 rounded-[8px] bg-[#F5F4F0] border border-[#D8D8D4] font-sans text-[10px] space-y-4 shadow-sm">
                     <div className="flex justify-between items-center border-b border-[#D8D8D4] pb-3">
-                      <span className="text-[#4444FF] text-[9px] font-bold tracking-wider">AMS CORE LEDGER // STABLE</span>
+                      <span className="text-[#0055FF] text-[9px] font-bold tracking-wider">AMS CORE LEDGER // STABLE</span>
                       <span className="text-[8px] text-[#6B6B6B] font-mono">UPDATED: JUST NOW</span>
                     </div>
                     <div className="space-y-2">
@@ -496,7 +496,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                           key={asset.id}
                           onClick={() => setSelectedAssetId(asset.id)}
                           className={`p-2.5 rounded-[4px] border transition-colors cursor-pointer flex justify-between ${
-                            selectedAssetId === asset.id ? 'bg-white border-[#4444FF]/40 text-[#4444FF] font-semibold' : 'border-[#D8D8D4] bg-white text-[#6B6B6B] hover:bg-[#F5F4F0]'
+                            selectedAssetId === asset.id ? 'bg-white border-[#0055FF]/40 text-[#0055FF] font-semibold' : 'border-[#D8D8D4] bg-white text-[#6B6B6B] hover:bg-[#F5F4F0]'
                           }`}
                         >
                           <span>{asset.id} - {asset.name}</span>
@@ -524,7 +524,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                   className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10"
                 >
                   <div className="lg:col-span-6 space-y-6">
-                    <div className="text-[9px] font-bold text-[#4444FF] bg-[#4444FF]/10 px-2.5 py-1 rounded-full border border-[#4444FF]/25 uppercase tracking-wider inline-block">
+                    <div className="text-[9px] font-bold text-[#0055FF] bg-[#0055FF]/10 px-2.5 py-1 rounded-full border border-[#0055FF]/25 uppercase tracking-wider inline-block">
                       Module: FIFO Warehousing Dispatch
                     </div>
                     <h3 className="twenty-serif text-2xl sm:text-3xl text-[#1A1A1A]">Alif Warehouse Management System</h3>
@@ -533,13 +533,13 @@ export default function Home({ setCurrentPage }: HomeProps) {
                     </p>
                     <ul className="space-y-2.5 text-xs text-[#1A1A1A]">
                       <li className="flex items-center gap-2 font-semibold">
-                        <Check className="w-4 h-4 text-[#4444FF]" /> Auto Pick Route algorithms for staff walks.
+                        <Check className="w-4 h-4 text-[#0055FF]" /> Auto Pick Route algorithms for staff walks.
                       </li>
                       <li className="flex items-center gap-2 font-semibold">
-                        <Check className="w-4 h-4 text-[#4444FF]" /> Threshold warnings to draft purchase logs.
+                        <Check className="w-4 h-4 text-[#0055FF]" /> Threshold warnings to draft purchase logs.
                       </li>
                       <li className="flex items-center gap-2 font-semibold">
-                        <Check className="w-4 h-4 text-[#4444FF]" /> Cross-dock routing capabilities.
+                        <Check className="w-4 h-4 text-[#0055FF]" /> Cross-dock routing capabilities.
                       </li>
                     </ul>
                     <button
@@ -553,7 +553,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                   {/* WMS Bin visualizer mockup */}
                   <div className="lg:col-span-6 p-5 rounded-[8px] bg-[#F5F4F0] border border-[#D8D8D4] font-sans text-[10px] space-y-4 shadow-sm">
                     <div className="flex justify-between items-center border-b border-[#D8D8D4] pb-2">
-                      <span className="text-[#4444FF] text-[9px] font-bold tracking-wider">ZONE A PICKING CELLS</span>
+                      <span className="text-[#0055FF] text-[9px] font-bold tracking-wider">ZONE A PICKING CELLS</span>
                       <span className="text-[8px] text-[#6B6B6B]">LINK: ACTIVE</span>
                     </div>
                     <div className="grid grid-cols-3 gap-2">
@@ -569,7 +569,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                           key={bin.code}
                           onClick={() => setWmsActiveBin(bin.code)}
                           className={`p-2.5 rounded-[4px] border text-center transition-colors cursor-pointer flex flex-col justify-between ${
-                            wmsActiveBin === bin.code ? 'bg-[#4444FF]/10 border-[#4444FF]/40 text-[#4444FF] font-bold' : 'border-[#D8D8D4] bg-white text-[#6B6B6B] hover:bg-[#F5F4F0]'
+                            wmsActiveBin === bin.code ? 'bg-[#0055FF]/10 border-[#0055FF]/40 text-[#0055FF] font-bold' : 'border-[#D8D8D4] bg-white text-[#6B6B6B] hover:bg-[#F5F4F0]'
                           }`}
                         >
                           <span className="text-[8px] text-[#6B6B6B]">{bin.code}</span>
@@ -592,7 +592,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                   className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10"
                 >
                   <div className="lg:col-span-6 space-y-6">
-                    <div className="text-[9px] font-bold text-[#4444FF] bg-[#4444FF]/10 px-2.5 py-1 rounded-full border border-[#4444FF]/25 uppercase tracking-wider inline-block">
+                    <div className="text-[9px] font-bold text-[#0055FF] bg-[#0055FF]/10 px-2.5 py-1 rounded-full border border-[#0055FF]/25 uppercase tracking-wider inline-block">
                       Module: Barcode Check-ins & GPS
                     </div>
                     <h3 className="twenty-serif text-2xl sm:text-3xl text-[#1A1A1A]">Alif Workflows Mobile App</h3>
@@ -601,13 +601,13 @@ export default function Home({ setCurrentPage }: HomeProps) {
                     </p>
                     <ul className="space-y-2.5 text-xs text-[#1A1A1A]">
                       <li className="flex items-center gap-2 font-semibold">
-                        <Check className="w-4 h-4 text-[#4444FF]" /> Geolocation tagging on service dispatch jobs.
+                        <Check className="w-4 h-4 text-[#0055FF]" /> Geolocation tagging on service dispatch jobs.
                       </li>
                       <li className="flex items-center gap-2 font-semibold">
-                        <Check className="w-4 h-4 text-[#4444FF]" /> Offline-first signature buffers and data queues.
+                        <Check className="w-4 h-4 text-[#0055FF]" /> Offline-first signature buffers and data queues.
                       </li>
                       <li className="flex items-center gap-2 font-semibold">
-                        <Check className="w-4 h-4 text-[#4444FF]" /> Bluetooth link for thermal receipt printers.
+                        <Check className="w-4 h-4 text-[#0055FF]" /> Bluetooth link for thermal receipt printers.
                       </li>
                     </ul>
                     <button
@@ -636,9 +636,9 @@ export default function Home({ setCurrentPage }: HomeProps) {
                                 <span>ALIF SCANNER CORE</span>
                                 <span className="text-emerald-600">READY</span>
                               </div>
-                              <div className="aspect-square border border-dashed border-[#4444FF]/30 rounded flex flex-col items-center justify-center bg-white relative overflow-hidden">
-                                {scanActive && <div className="absolute left-0 right-0 h-0.5 bg-[#4444FF] animate-bounce"></div>}
-                                <Cpu className="w-6 h-6 text-[#4444FF]/20" />
+                              <div className="aspect-square border border-dashed border-[#0055FF]/30 rounded flex flex-col items-center justify-center bg-white relative overflow-hidden">
+                                {scanActive && <div className="absolute left-0 right-0 h-0.5 bg-[#0055FF] animate-bounce"></div>}
+                                <Cpu className="w-6 h-6 text-[#0055FF]/20" />
                                 <span className="text-[6px] text-[#6B6B6B] font-mono uppercase mt-1">Awaiting QR scan</span>
                               </div>
                             </div>
@@ -664,7 +664,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                               <div className="p-2.5 bg-white border border-[#D8D8D4] rounded text-center">
                                 <span className="text-[6px] text-[#6B6B6B] block uppercase font-bold mb-1">Cursive Signature</span>
                                 <div className="h-10 border border-dashed border-[#D8D8D4] rounded flex items-center justify-center bg-[#F5F4F0]">
-                                  <svg className="w-20 h-6 text-[#4444FF]" viewBox="0 0 100 30" fill="none">
+                                  <svg className="w-20 h-6 text-[#0055FF]" viewBox="0 0 100 30" fill="none">
                                     <path d="M10 20 Q 30 5, 45 25 T 80 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                                   </svg>
                                 </div>
@@ -694,7 +694,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="text-left space-y-4">
             <div className="inline-flex items-center gap-2 select-none">
-              <div className="w-[14px] h-[6px] bg-[#4444FF] rounded-[1px]" />
+              <div className="w-[14px] h-[6px] bg-[#0055FF] rounded-[1px]" />
               <span className="font-sans text-[13px] font-bold text-[#1A1A1A] tracking-tight uppercase">
                 Certified Integrations
               </span>
@@ -717,8 +717,8 @@ export default function Home({ setCurrentPage }: HomeProps) {
                 <CornerMarkers />
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-bold text-[#1A1A1A] group-hover:text-[#4444FF] transition-colors">{partner.name}</h4>
-                    <span className="text-[8px] font-bold text-[#4444FF] bg-[#4444FF]/10 px-2 py-0.5 border border-[#4444FF]/25 rounded-full uppercase">
+                    <h4 className="text-sm font-bold text-[#1A1A1A] group-hover:text-[#0055FF] transition-colors">{partner.name}</h4>
+                    <span className="text-[8px] font-bold text-[#0055FF] bg-[#0055FF]/10 px-2 py-0.5 border border-[#0055FF]/25 rounded-full uppercase">
                       {partner.purpose}
                     </span>
                   </div>
@@ -726,7 +726,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                     {partner.reason}
                   </p>
                 </div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-[#6B6B6B]/60 group-hover:text-[#4444FF] transition-colors pt-2 border-t border-[#D8D8D4]/60 flex items-center justify-between">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#6B6B6B]/60 group-hover:text-[#0055FF] transition-colors pt-2 border-t border-[#D8D8D4]/60 flex items-center justify-between">
                   <span>Explore Partner Spec</span>
                   <ChevronRight className="w-3 h-3" />
                 </div>
@@ -742,7 +742,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-5 space-y-4 text-left">
               <div className="inline-flex items-center gap-2 select-none">
-                <div className="w-[14px] h-[6px] bg-[#4444FF] rounded-[1px]" />
+                <div className="w-[14px] h-[6px] bg-[#0055FF] rounded-[1px]" />
                 <span className="font-sans text-[13px] font-bold text-[#1A1A1A] tracking-tight uppercase">
                   Corporate Differentiators
                 </span>
@@ -802,7 +802,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
 
               {formSubmitted ? (
                 <div className="p-8 rounded-[6px] bg-[#F5F4F0] border border-[#D8D8D4] text-center space-y-3 flex flex-col items-center">
-                  <CheckCircle2 className="w-12 h-12 text-[#4444FF]" />
+                  <CheckCircle2 className="w-12 h-12 text-[#0055FF]" />
                   <h4 className="twenty-serif text-lg text-[#1A1A1A]">Message Transmitted</h4>
                   <p className="text-xs text-[#6B6B6B] max-w-sm">Thank you. Your inquiry has been successfully sent. An Alif engineer will connect with you shortly.</p>
                 </div>
@@ -817,7 +817,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. John Doe"
-                        className="w-full p-3.5 bg-[#F5F4F0] border border-[#D8D8D4] rounded-[4px] text-[#1A1A1A] focus:outline-none focus:border-[#4444FF] transition-colors"
+                        className="w-full p-3.5 bg-[#F5F4F0] border border-[#D8D8D4] rounded-[4px] text-[#1A1A1A] focus:outline-none focus:border-[#0055FF] transition-colors"
                       />
                     </div>
                     <div className="text-left">
@@ -828,7 +828,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="john@company.com"
-                        className="w-full p-3.5 bg-[#F5F4F0] border border-[#D8D8D4] rounded-[4px] text-[#1A1A1A] focus:outline-none focus:border-[#4444FF] transition-colors"
+                        className="w-full p-3.5 bg-[#F5F4F0] border border-[#D8D8D4] rounded-[4px] text-[#1A1A1A] focus:outline-none focus:border-[#0055FF] transition-colors"
                       />
                     </div>
                   </div>
@@ -840,12 +840,12 @@ export default function Home({ setCurrentPage }: HomeProps) {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+974 6682 3215"
-                        className="w-full p-3.5 bg-[#F5F4F0] border border-[#D8D8D4] rounded-[4px] text-[#1A1A1A] focus:outline-none focus:border-[#4444FF] transition-colors"
+                        className="w-full p-3.5 bg-[#F5F4F0] border border-[#D8D8D4] rounded-[4px] text-[#1A1A1A] focus:outline-none focus:border-[#0055FF] transition-colors"
                       />
                     </div>
                     <div className="text-left">
                       <label className="block text-[#1A1A1A] uppercase tracking-wider mb-2 font-bold text-[10px]">Select Core Need</label>
-                      <select className="w-full p-3.5 bg-[#F5F4F0] border border-[#D8D8D4] rounded-[4px] text-[#1A1A1A] focus:outline-none focus:border-[#4444FF] transition-colors">
+                      <select className="w-full p-3.5 bg-[#F5F4F0] border border-[#D8D8D4] rounded-[4px] text-[#1A1A1A] focus:outline-none focus:border-[#0055FF] transition-colors">
                         <option>ERP/CRM Integration</option>
                         <option>Custom AI/ML modeling</option>
                         <option>Web/Mobile Development</option>
@@ -861,7 +861,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Briefly describe your database, legacy modules, or custom system targets..."
-                      className="w-full p-3.5 bg-[#F5F4F0] border border-[#D8D8D4] rounded-[4px] text-[#1A1A1A] focus:outline-none focus:border-[#4444FF] transition-colors"
+                      className="w-full p-3.5 bg-[#F5F4F0] border border-[#D8D8D4] rounded-[4px] text-[#1A1A1A] focus:outline-none focus:border-[#0055FF] transition-colors"
                     ></textarea>
                   </div>
                   <button
@@ -878,7 +878,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
             <div className="lg:col-span-5 space-y-10 text-left">
               <div className="space-y-3">
                 <div className="inline-flex items-center gap-2 select-none">
-                  <div className="w-[14px] h-[6px] bg-[#4444FF] rounded-[1px]" />
+                  <div className="w-[14px] h-[6px] bg-[#0055FF] rounded-[1px]" />
                   <span className="font-sans text-[13px] font-bold text-[#1A1A1A] tracking-tight uppercase">Get in Touch</span>
                 </div>
                 <h3 className="twenty-serif text-3xl text-[#1A1A1A]">Let's Connect Globally</h3>
@@ -891,14 +891,14 @@ export default function Home({ setCurrentPage }: HomeProps) {
                 {/* Qatar Office */}
                 <div className="p-5 rounded-[8px] bg-white border border-[#D8D8D4] space-y-2 relative shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
                   <CornerMarkers />
-                  <div className="text-[9px] font-bold text-[#4444FF] bg-[#4444FF]/10 px-2 py-0.5 border border-[#4444FF]/25 rounded-full uppercase tracking-wider inline-block">Head Office (Qatar)</div>
+                  <div className="text-[9px] font-bold text-[#0055FF] bg-[#0055FF]/10 px-2 py-0.5 border border-[#0055FF]/25 rounded-full uppercase tracking-wider inline-block">Head Office (Qatar)</div>
                   <h4 className="text-sm font-bold text-[#1A1A1A] pt-1">Alif Info Tech Services WLL</h4>
                   <p className="text-[#6B6B6B] leading-relaxed text-[11px]">
                     Doha, State of Qatar<br />
                     PO Box: 12345
                   </p>
                   <div className="flex gap-4 pt-1 font-mono text-[10px]">
-                    <a href="tel:+97466823215" className="text-[#4444FF] hover:underline font-bold">
+                    <a href="tel:+97466823215" className="text-[#0055FF] hover:underline font-bold">
                       +974 6682 3215
                     </a>
                   </div>
@@ -907,14 +907,14 @@ export default function Home({ setCurrentPage }: HomeProps) {
                 {/* India Office */}
                 <div className="p-5 rounded-[8px] bg-white border border-[#D8D8D4] space-y-2 relative shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
                   <CornerMarkers />
-                  <div className="text-[9px] font-bold text-[#4444FF] bg-[#4444FF]/10 px-2 py-0.5 border border-[#4444FF]/25 rounded-full uppercase tracking-wider inline-block">Branch Office (India)</div>
+                  <div className="text-[9px] font-bold text-[#0055FF] bg-[#0055FF]/10 px-2 py-0.5 border border-[#0055FF]/25 rounded-full uppercase tracking-wider inline-block">Branch Office (India)</div>
                   <h4 className="text-sm font-bold text-[#1A1A1A] pt-1">Alif Info Tech Lab</h4>
                   <p className="text-[#6B6B6B] leading-relaxed text-[11px]">
                     Hitech City, Hyderabad<br />
                     Telangana, 500081, India
                   </p>
                   <div className="flex gap-4 pt-1 font-mono text-[10px]">
-                    <a href="mailto:info@alifinfotech.net" className="text-[#4444FF] hover:underline font-bold">
+                    <a href="mailto:info@alifinfotech.net" className="text-[#0055FF] hover:underline font-bold">
                       info@alifinfotech.net
                     </a>
                   </div>
@@ -922,7 +922,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
               </div>
 
               <div className="p-5 rounded-[8px] bg-white border border-[#D8D8D4] flex items-start gap-4 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
-                <Shield className="w-6 h-6 text-[#4444FF] shrink-0 mt-0.5" />
+                <Shield className="w-6 h-6 text-[#0055FF] shrink-0 mt-0.5" />
                 <div className="space-y-1">
                   <h4 className="text-xs font-bold text-[#1A1A1A]">Immediate SLA Support Active</h4>
                   <p className="text-[10px] text-[#6B6B6B] leading-relaxed">Our partners enjoy dedicated hotlines for ERP systems, hospital software, and custom mobile apps.</p>

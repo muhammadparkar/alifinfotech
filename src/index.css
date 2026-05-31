@@ -8,9 +8,9 @@
   --color-surface-2: #FFFFFF;       /* white background for cards */
   --color-border: #D8D8D4;          /* thin border line */
   
-  --color-accent: #4444FF;          /* cobalt blue accent */
+  --color-accent: #0055FF;          /* electric blue logo accent */
   --color-accent-2: #1C1C1C;        /* dark accent */
-  --color-accent-glow: rgba(68, 68, 255, 0.08); /* subtle blue glow */
+  --color-accent-glow: rgba(0, 85, 255, 0.08); /* subtle blue glow */
   
   --color-text-primary: #1A1A1A;     /* dark text */
   --color-text-secondary: #6B6B6B;   /* muted text */
@@ -30,7 +30,7 @@
   --color-brand-gray: var(--color-text-secondary);
   --color-brand-gold: var(--color-accent);
   --color-brand-gold-dark: var(--color-accent-2);
-  --color-brand-gold-light: #5555FF;
+  --color-brand-gold-light: #3377FF;
   --color-brand-amber: var(--color-accent);
   --color-brand-sand: var(--color-accent);
 

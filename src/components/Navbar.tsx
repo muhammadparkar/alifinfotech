@@ -82,12 +82,12 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
           <button
             onClick={() => handleLinkClick('home')}
             className={`px-3 py-1.5 rounded-[4px] text-[11px] font-bold uppercase tracking-[0.08em] transition-all duration-200 relative cursor-pointer ${
-              currentPage === 'home' ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#4444FF]'
+              currentPage === 'home' ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#0055FF]'
             }`}
           >
             Home
             {currentPage === 'home' && (
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#4444FF]"></span>
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#0055FF]"></span>
             )}
           </button>
 
@@ -95,17 +95,17 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
           <div className="relative group/dropdown">
             <button
               className={`px-3 py-1.5 rounded-[4px] text-[11px] font-bold uppercase tracking-[0.08em] flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
-                currentPage === 'products' ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#4444FF]'
+                currentPage === 'products' ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#0055FF]'
               }`}
             >
               Products
               <ChevronDown className="w-3 h-3 opacity-60 group-hover/dropdown:rotate-180 transition-transform duration-200" />
               {currentPage === 'products' && (
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#4444FF]"></span>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#0055FF]"></span>
               )}
             </button>
             <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-80 rounded-[8px] bg-white border border-[#D8D8D4] p-2 opacity-0 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:pointer-events-auto transition-all duration-200 transform translate-y-1.5 group-hover/dropdown:translate-y-0 shadow-[4px_8px_24px_rgba(0,0,0,0.06)] text-left">
-              <div className="px-3 py-2 text-[10px] font-bold text-[#4444FF] tracking-wider uppercase border-b border-[#D8D8D4]/60 mb-1.5">
+              <div className="px-3 py-2 text-[10px] font-bold text-[#0055FF] tracking-wider uppercase border-b border-[#D8D8D4]/60 mb-1.5">
                 Flagship Platforms
               </div>
               {products.map((p) => (
@@ -114,11 +114,11 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                   onClick={() => handleLinkClick('products', p.tab)}
                   className="flex items-start gap-3 p-2.5 rounded-[6px] hover:bg-[#EBEBEB] border border-transparent hover:border-[#D8D8D4]/40 transition-all cursor-pointer group/item"
                 >
-                  <div className="p-2 rounded-[4px] bg-[#F5F4F0] text-[#4444FF] border border-[#D8D8D4] group-hover/item:scale-102 transition-transform">
+                  <div className="p-2 rounded-[4px] bg-[#F5F4F0] text-[#0055FF] border border-[#D8D8D4] group-hover/item:scale-102 transition-transform">
                     <p.icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-[#1A1A1A] group-hover/item:text-[#4444FF] transition-colors">{p.name}</h4>
+                    <h4 className="text-xs font-bold text-[#1A1A1A] group-hover/item:text-[#0055FF] transition-colors">{p.name}</h4>
                     <p className="text-[10px] text-[#6B6B6B] mt-0.5">{p.desc}</p>
                   </div>
                 </div>
@@ -130,17 +130,17 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
           <div className="relative group/dropdown">
             <button
               className={`px-3 py-1.5 rounded-[4px] text-[11px] font-bold uppercase tracking-[0.08em] flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
-                currentPage === 'services' ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#4444FF]'
+                currentPage === 'services' ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#0055FF]'
               }`}
             >
               Services
               <ChevronDown className="w-3 h-3 opacity-60 group-hover/dropdown:rotate-180 transition-transform duration-200" />
               {currentPage === 'services' && (
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#4444FF]"></span>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#0055FF]"></span>
               )}
             </button>
             <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-[460px] rounded-[8px] bg-white border border-[#D8D8D4] p-3 opacity-0 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:pointer-events-auto transition-all duration-200 transform translate-y-1.5 group-hover/dropdown:translate-y-0 shadow-[4px_8px_24px_rgba(0,0,0,0.06)] text-left">
-              <div className="px-3 py-2 text-[10px] font-bold text-[#4444FF] tracking-wider uppercase border-b border-[#D8D8D4]/60 mb-2">
+              <div className="px-3 py-2 text-[10px] font-bold text-[#0055FF] tracking-wider uppercase border-b border-[#D8D8D4]/60 mb-2">
                 Capabilities Matrix
               </div>
               <div className="grid grid-cols-2 gap-1.5">
@@ -150,11 +150,11 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                     onClick={() => handleLinkClick('services', s.tab)}
                     className="flex items-start gap-3 p-2.5 rounded-[6px] hover:bg-[#EBEBEB] border border-transparent hover:border-[#D8D8D4]/40 transition-all cursor-pointer group/item"
                   >
-                    <div className="p-2 rounded-[4px] bg-[#F5F4F0] text-[#4444FF] border border-[#D8D8D4] group-hover/item:scale-102 transition-transform shrink-0">
+                    <div className="p-2 rounded-[4px] bg-[#F5F4F0] text-[#0055FF] border border-[#D8D8D4] group-hover/item:scale-102 transition-transform shrink-0">
                       <s.icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-[#1A1A1A] group-hover/item:text-[#4444FF] transition-colors leading-snug">{s.name}</h4>
+                      <h4 className="text-xs font-bold text-[#1A1A1A] group-hover/item:text-[#0055FF] transition-colors leading-snug">{s.name}</h4>
                       <p className="text-[9px] text-[#6B6B6B] mt-0.5 leading-normal">{s.desc}</p>
                     </div>
                   </div>
@@ -167,17 +167,17 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
           <div className="relative group/dropdown">
             <button
               className={`px-3 py-1.5 rounded-[4px] text-[11px] font-bold uppercase tracking-[0.08em] flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
-                currentPage === 'solutions' ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#4444FF]'
+                currentPage === 'solutions' ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#0055FF]'
               }`}
             >
               Solutions
               <ChevronDown className="w-3 h-3 opacity-60 group-hover/dropdown:rotate-180 transition-transform duration-200" />
               {currentPage === 'solutions' && (
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#4444FF]"></span>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#0055FF]"></span>
               )}
             </button>
             <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-88 rounded-[8px] bg-white border border-[#D8D8D4] p-2 opacity-0 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:pointer-events-auto transition-all duration-200 transform translate-y-1.5 group-hover/dropdown:translate-y-0 shadow-[4px_8px_24px_rgba(0,0,0,0.06)] text-left">
-              <div className="px-3 py-2 text-[10px] font-bold text-[#4444FF] tracking-wider uppercase border-b border-[#D8D8D4]/60 mb-1.5">
+              <div className="px-3 py-2 text-[10px] font-bold text-[#0055FF] tracking-wider uppercase border-b border-[#D8D8D4]/60 mb-1.5">
                 Industrial Case Blueprinting
               </div>
               {solutions.map((sol) => (
@@ -186,11 +186,11 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                   onClick={() => handleLinkClick('solutions', sol.tab)}
                   className="flex items-start gap-3 p-2.5 rounded-[6px] hover:bg-[#EBEBEB] border border-transparent hover:border-[#D8D8D4]/40 transition-all cursor-pointer group/item"
                 >
-                  <div className="p-2 rounded-[4px] bg-[#F5F4F0] text-[#4444FF] border border-[#D8D8D4] group-hover/item:scale-102 transition-transform shrink-0">
+                  <div className="p-2 rounded-[4px] bg-[#F5F4F0] text-[#0055FF] border border-[#D8D8D4] group-hover/item:scale-102 transition-transform shrink-0">
                     <sol.icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-[#1A1A1A] group-hover/item:text-[#4444FF] transition-colors leading-snug">{sol.name}</h4>
+                    <h4 className="text-xs font-bold text-[#1A1A1A] group-hover/item:text-[#0055FF] transition-colors leading-snug">{sol.name}</h4>
                     <p className="text-[10px] text-[#6B6B6B] mt-0.5 leading-normal">{sol.desc}</p>
                   </div>
                 </div>
@@ -202,17 +202,17 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
           <div className="relative group/dropdown">
             <button
               className={`px-3 py-1.5 rounded-[4px] text-[11px] font-bold uppercase tracking-[0.08em] flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
-                ['about', 'why-choose-us', 'clients', 'partners'].includes(currentPage) ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#4444FF]'
+                ['about', 'why-choose-us', 'clients', 'partners'].includes(currentPage) ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#0055FF]'
               }`}
             >
               Company
               <ChevronDown className="w-3 h-3 opacity-60 group-hover/dropdown:rotate-180 transition-transform duration-200" />
               {['about', 'why-choose-us', 'clients', 'partners'].includes(currentPage) && (
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#4444FF]"></span>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#0055FF]"></span>
               )}
             </button>
             <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-96 rounded-[8px] bg-white border border-[#D8D8D4] p-2 opacity-0 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:pointer-events-auto transition-all duration-200 transform translate-y-1.5 group-hover/dropdown:translate-y-0 shadow-[4px_8px_24px_rgba(0,0,0,0.06)] text-left">
-              <div className="px-3 py-2 text-[10px] font-bold text-[#4444FF] tracking-wider uppercase border-b border-[#D8D8D4]/60 mb-1.5">
+              <div className="px-3 py-2 text-[10px] font-bold text-[#0055FF] tracking-wider uppercase border-b border-[#D8D8D4]/60 mb-1.5">
                 Organization & Trust
               </div>
               <div className="grid grid-cols-1 gap-1">
@@ -222,11 +222,11 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                     onClick={() => handleLinkClick(comp.page)}
                     className="flex items-start gap-3 p-2 rounded-[6px] hover:bg-[#EBEBEB] border border-transparent hover:border-[#D8D8D4]/40 transition-all cursor-pointer group/item"
                   >
-                    <div className="p-2 rounded-[4px] bg-[#F5F4F0] text-[#4444FF] border border-[#D8D8D4] group-hover/item:scale-102 transition-transform shrink-0">
+                    <div className="p-2 rounded-[4px] bg-[#F5F4F0] text-[#0055FF] border border-[#D8D8D4] group-hover/item:scale-102 transition-transform shrink-0">
                       <comp.icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-[#1A1A1A] group-hover/item:text-[#4444FF] transition-colors leading-snug">{comp.name}</h4>
+                      <h4 className="text-xs font-bold text-[#1A1A1A] group-hover/item:text-[#0055FF] transition-colors leading-snug">{comp.name}</h4>
                       <p className="text-[10px] text-[#6B6B6B] mt-0.5 leading-normal">{comp.desc}</p>
                     </div>
                   </div>
@@ -239,12 +239,12 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
           <button
             onClick={() => handleLinkClick('industries')}
             className={`px-3 py-1.5 rounded-[4px] text-[11px] font-bold uppercase tracking-[0.08em] transition-all duration-200 relative cursor-pointer ${
-              currentPage === 'industries' ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#4444FF]'
+              currentPage === 'industries' ? 'text-[#1A1A1A]' : 'text-[#6B6B6B] hover:text-[#0055FF]'
             }`}
           >
             Industries
             {currentPage === 'industries' && (
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#4444FF]"></span>
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#0055FF]"></span>
             )}
           </button>
         </nav>
@@ -293,7 +293,7 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
               onClick={() => handleLinkClick(item.id)}
               className={`w-full text-left py-3 px-4 rounded-[4px] text-sm font-semibold transition-all ${
                 currentPage === item.id
-                  ? 'bg-[#EBEBEB] text-[#4444FF] border-l-2 border-[#4444FF]'
+                  ? 'bg-[#EBEBEB] text-[#0055FF] border-l-2 border-[#0055FF]'
                   : 'text-[#1A1A1A] hover:bg-[#EBEBEB]'
               }`}
             >

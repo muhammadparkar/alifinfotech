@@ -51,7 +51,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
               <button
                 key={link.label}
                 onClick={() => handleLinkClick(link.page)}
-                className="hover:text-[#4444FF] hover:underline transition-colors cursor-pointer"
+                className="hover:text-[#0055FF] hover:underline transition-colors cursor-pointer"
               >
                 {link.label}
               </button>
@@ -64,7 +64,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
               href="https://linkedin.com/company/alif-info-tech-services-wll"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-[4px] bg-[#F5F4F0] flex items-center justify-center text-[#6B6B6B] hover:text-[#4444FF] border border-[#D8D8D4] transition-all cursor-pointer"
+              className="w-8 h-8 rounded-[4px] bg-[#F5F4F0] flex items-center justify-center text-[#6B6B6B] hover:text-[#0055FF] border border-[#D8D8D4] transition-all cursor-pointer"
               title="LinkedIn Profile"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -73,7 +73,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
             </a>
             <a
               href="mailto:info@alifinfotech.net"
-              className="w-8 h-8 rounded-[4px] bg-[#F5F4F0] flex items-center justify-center text-[#6B6B6B] hover:text-[#4444FF] border border-[#D8D8D4] transition-all cursor-pointer"
+              className="w-8 h-8 rounded-[4px] bg-[#F5F4F0] flex items-center justify-center text-[#6B6B6B] hover:text-[#0055FF] border border-[#D8D8D4] transition-all cursor-pointer"
               title="Email Us"
             >
               <Mail className="w-4 h-4" />
@@ -85,7 +85,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-[#6B6B6B] font-mono relative z-10">
           <p>© {new Date().getFullYear()} Alif Info Tech Services WLL. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <span className="text-[9px] text-[#4444FF] font-bold uppercase tracking-widest bg-[#F5F4F0] px-2.5 py-1 rounded-[3px] border border-[#D8D8D4] select-none">
+            <span className="text-[9px] text-[#0055FF] font-bold uppercase tracking-widest bg-[#F5F4F0] px-2.5 py-1 rounded-[3px] border border-[#D8D8D4] select-none">
               Doha HQ | Hyderabad Lab
             </span>
           </div>

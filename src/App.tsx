@@ -111,7 +111,7 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#F5F4F0] text-[#1A1A1A] antialiased selection:bg-[#4444FF]/25 selection:text-[#1A1A1A]">
+    <div className="flex flex-col min-h-screen bg-[#F5F4F0] text-[#1A1A1A] antialiased selection:bg-[#0055FF]/25 selection:text-[#1A1A1A]">
       {/* Sticky Header */}
       <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 

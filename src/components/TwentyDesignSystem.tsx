@@ -122,7 +122,7 @@ export const NavBar = ({
         {/* Right: Social icons and Buttons */}
         <div className="flex items-center gap-4">
           {/* Subtle Github Icon and Star counter mockup */}
-          <div className="hidden sm:flex items-center gap-2 text-[#1A1A1A] hover:text-[#4444FF] transition-colors cursor-pointer mr-2">
+          <div className="hidden sm:flex items-center gap-2 text-[#1A1A1A] hover:text-[#0055FF] transition-colors cursor-pointer mr-2">
             <GithubIcon className="w-4 h-4" />
             <span className="text-[12px] font-mono tracking-tight bg-[#EBEBEB] border border-[#D8D8D4] px-1.5 py-0.5 rounded-[3px] font-semibold">6.5K ↗</span>
           </div>
@@ -151,7 +151,7 @@ export const SectionPill = ({ label }: { label: string }) => {
   return (
     <div className="inline-flex items-center gap-2 select-none">
       {/* 14x6px Blue sharp rectangle */}
-      <div className="w-[14px] h-[6px] bg-[#4444FF] rounded-[1px]" />
+      <div className="w-[14px] h-[6px] bg-[#0055FF] rounded-[1px]" />
       <span className="font-sans text-[13px] font-semibold text-[#1A1A1A] tracking-tight">
         {label}
       </span>
@@ -162,9 +162,9 @@ export const SectionPill = ({ label }: { label: string }) => {
 // 2b. SectionPillBlue Component (Alternate Variant)
 export const SectionPillBlue = ({ label }: { label: string }) => {
   return (
-    <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#4444FF]/10 border border-[#4444FF]/25 rounded-full select-none">
-      <span className="w-1.5 h-1.5 bg-[#4444FF] rounded-full animate-pulse" />
-      <span className="font-sans text-[11px] font-bold uppercase tracking-wider text-[#4444FF]">
+    <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#0055FF]/10 border border-[#0055FF]/25 rounded-full select-none">
+      <span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full animate-pulse" />
+      <span className="font-sans text-[11px] font-bold uppercase tracking-wider text-[#0055FF]">
         {label}
       </span>
     </div>
@@ -367,7 +367,7 @@ export const StepIndicator = ({ number, active }: StepIndicatorProps) => {
         {/* Step Marker and vertical track wrapper */}
         <div className="flex flex-col items-center">
           {active ? (
-            <div className="font-sans text-[11px] text-[#4444FF] font-bold border-l-2 border-[#4444FF] pl-3 py-1.5 transition-all">
+            <div className="font-sans text-[11px] text-[#0055FF] font-bold border-l-2 border-[#0055FF] pl-3 py-1.5 transition-all">
               {number}
             </div>
           ) : (
@@ -410,13 +410,13 @@ export const DarkUIPanel = ({
             key={idx}
             className={`flex items-center gap-3 px-3 py-2.5 rounded-[6px] transition-all cursor-pointer ${
               item.active 
-                ? 'bg-[#2A2A2A] text-white border border-[#4444FF]/30' 
+                ? 'bg-[#2A2A2A] text-white border border-[#0055FF]/30' 
                 : 'bg-transparent text-[#E0E0E0] hover:bg-[#2A2A2A]/50 border border-transparent'
             }`}
           >
             {/* Square placeholder for icon */}
             <div className={`w-[16px] h-[16px] rounded-[3px] shrink-0 flex items-center justify-center text-[9px] font-bold ${
-              item.active ? 'bg-[#4444FF] text-white' : 'bg-[#333]'
+              item.active ? 'bg-[#0055FF] text-white' : 'bg-[#333]'
             }`}>
               {idx + 1}
             </div>
@@ -628,17 +628,26 @@ export const CornerMarkers = () => {
 
 // 13. HeroDecorationBars Component
 export const HeroDecorationBars = ({ side }: { side: 'left' | 'right' | 'both' }) => {
-  const bars = [110, 85, 95, 120, 70, 60, 105, 75, 90, 80, 50, 65, 40, 55, 30, 45, 20, 35, 25, 15];
+  // Generate 75 lines to cover the entire height from top to bottom
+  const totalLines = 75;
+  const bars = Array.from({ length: totalLines }, (_, i) => {
+    const base = 60;
+    // Layered sine waves for highly sophisticated, premium organic flow
+    const wave1 = Math.sin(i * 0.18) * 45;
+    const wave2 = Math.cos(i * 0.35) * 20;
+    const wave3 = Math.sin(i * 0.08) * 15;
+    return Math.max(15, Math.round(base + wave1 + wave2 + wave3));
+  });
   
   const renderBars = (align: 'left' | 'right') => (
-    <div className={`absolute top-1/4 ${align === 'left' ? 'left-0' : 'right-0'} hidden lg:flex flex-col gap-[3px] z-0 select-none pointer-events-none`}>
+    <div className={`absolute inset-y-0 ${align === 'left' ? 'left-0' : 'right-0'} hidden lg:flex flex-col justify-between py-6 z-0 select-none pointer-events-none`}>
       {bars.map((width, i) => (
         <div 
           key={i} 
-          className="h-[2px] bg-[#4444FF]" 
+          className="h-[2px] bg-[#0055FF]" 
           style={{ 
             width: `${width}px`, 
-            opacity: 0.35 + (i % 5) * 0.1,
+            opacity: 0.12 + (i % 6) * 0.06, // subtle and elegant side background feel
             marginLeft: align === 'right' ? 'auto' : undefined 
           }}
         />
@@ -694,88 +703,91 @@ export default function TwentyShowcase() {
       <NavBar />
       
       {/* Hero Section Container */}
-      <section className="relative px-6 py-20 lg:py-28 max-w-[1000px] mx-auto text-center border-b border-[#D8D8D4]">
-        <CornerMarkers />
+      <section className="relative w-full border-b border-[#D8D8D4] overflow-hidden">
         <HeroDecorationBars side="both" />
         
-        <div className="max-w-[760px] mx-auto flex flex-col items-center gap-6 mt-6">
-          <SectionPill label="The Open Source CRM." />
+        <div className="relative max-w-[1000px] mx-auto px-6 py-20 lg:py-28 text-center">
+          <CornerMarkers />
           
-          <HeroHeading>
-            Build your Enterprise CRM <em className="italic font-normal">at AI Speed</em>
-          </HeroHeading>
-          
-          <p className="font-sans text-[15px] sm:text-[18px] leading-[1.65] text-[#6B6B6B] max-w-[580px] mt-2">
-            Twenty gives technical teams the building blocks for a custom CRM that meets complex business needs and quickly adapts as the business evolves.
-          </p>
+          <div className="max-w-[760px] mx-auto flex flex-col items-center gap-6 mt-6">
+            <SectionPill label="The Open Source CRM." />
+            
+            <HeroHeading>
+              Build your Enterprise CRM <em className="italic font-normal">at AI Speed</em>
+            </HeroHeading>
+            
+            <p className="font-sans text-[15px] sm:text-[18px] leading-[1.65] text-[#6B6B6B] max-w-[580px] mt-2">
+              Twenty gives technical teams the building blocks for a custom CRM that meets complex business needs and quickly adapts as the business evolves.
+            </p>
 
-          <div className="mt-4">
-            <CTAButtons />
-          </div>
-        </div>
-
-        {/* Browser Interface Mockup */}
-        <div className="mt-14 w-full max-w-[860px] mx-auto bg-white border border-[#D8D8D4] rounded-[10px] shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-hidden text-left relative">
-          <div className="absolute top-0 right-0 w-36 h-36 dither-pattern pointer-events-none" />
-          
-          {/* Apple header style */}
-          <div className="bg-[#EBEBEB] border-b border-[#D8D8D4] px-4 py-3 flex items-center justify-between">
-            <div className="flex gap-1.5">
-              <div className="w-[10px] h-[10px] rounded-full bg-[#FF5F56]" />
-              <div className="w-[10px] h-[10px] rounded-full bg-[#FFBD2E]" />
-              <div className="w-[10px] h-[10px] rounded-full bg-[#27C93F]" />
+            <div className="mt-4">
+              <CTAButtons />
             </div>
-            <div className="text-[12px] font-mono tracking-wide text-[#6B6B6B]">
-              Twenty Browser App
-            </div>
-            <div className="w-10" />
           </div>
 
-          {/* Simple CRM table mock inside browser mockup */}
-          <div className="p-6 overflow-x-auto scrollbar-none font-sans text-xs">
-            <div className="flex items-center justify-between pb-4 border-b border-[#D8D8D4] mb-4">
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-[14px]">All Companies</span>
-                <span className="bg-[#EBEBEB] text-[#6B6B6B] px-1.5 py-0.5 rounded text-[10px] font-mono">12 companies</span>
+          {/* Browser Interface Mockup */}
+          <div className="mt-14 w-full max-w-[860px] mx-auto bg-white border border-[#D8D8D4] rounded-[10px] shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-hidden text-left relative">
+            <div className="absolute top-0 right-0 w-36 h-36 dither-pattern pointer-events-none" />
+            
+            {/* Apple header style */}
+            <div className="bg-[#EBEBEB] border-b border-[#D8D8D4] px-4 py-3 flex items-center justify-between">
+              <div className="flex gap-1.5">
+                <div className="w-[10px] h-[10px] rounded-full bg-[#FF5F56]" />
+                <div className="w-[10px] h-[10px] rounded-full bg-[#FFBD2E]" />
+                <div className="w-[10px] h-[10px] rounded-full bg-[#27C93F]" />
               </div>
-              <div className="flex gap-2">
-                <button className="px-2.5 py-1 bg-[#EBEBEB] rounded border border-[#D8D8D4] hover:bg-[#1A1A1A]/5 cursor-pointer">Filter</button>
-                <button className="px-2.5 py-1 bg-[#1A1A1A] text-white rounded cursor-pointer">New Company</button>
+              <div className="text-[12px] font-mono tracking-wide text-[#6B6B6B]">
+                Twenty Browser App
               </div>
+              <div className="w-10" />
             </div>
 
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="border-b border-[#D8D8D4]/60 text-[#6B6B6B]">
-                  <th className="py-2.5 text-left font-semibold">COMPANY</th>
-                  <th className="py-2.5 text-left font-semibold">URL</th>
-                  <th className="py-2.5 text-left font-semibold">CREATED BY</th>
-                  <th className="py-2.5 text-left font-semibold">STAGE</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  { name: 'Anthropic', url: 'anthropic.com', user: 'Dario Amodei', stage: 'Prospect' },
-                  { name: 'Slack', url: 'slack.com', user: 'Stewart Butterfield', stage: 'Active' },
-                  { name: 'Notion', url: 'notion.so', user: 'Ivan Zhao', stage: 'Contract' },
-                  { name: 'Figma', url: 'figma.com', user: 'Dylan Field', stage: 'Lead' }
-                ].map((row, i) => (
-                  <tr key={i} className="border-b border-[#D8D8D4]/40 hover:bg-[#F5F4F0]/50">
-                    <td className="py-3 font-semibold text-[#1A1A1A] flex items-center gap-2">
-                      <div className="w-4 h-4 bg-[#4444FF] rounded-sm" />
-                      {row.name}
-                    </td>
-                    <td className="py-3 font-mono text-[#6B6B6B]">{row.url}</td>
-                    <td className="py-3 font-semibold">{row.user}</td>
-                    <td className="py-3">
-                      <span className="px-2 py-0.5 bg-[#4444FF]/10 text-[#4444FF] border border-[#4444FF]/20 rounded-full font-bold text-[10px]">
-                        {row.stage}
-                      </span>
-                    </td>
+            {/* Simple CRM table mock inside browser mockup */}
+            <div className="p-6 overflow-x-auto scrollbar-none font-sans text-xs">
+              <div className="flex items-center justify-between pb-4 border-b border-[#D8D8D4] mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="font-bold text-[14px]">All Companies</span>
+                  <span className="bg-[#EBEBEB] text-[#6B6B6B] px-1.5 py-0.5 rounded text-[10px] font-mono">12 companies</span>
+                </div>
+                <div className="flex gap-2">
+                  <button className="px-2.5 py-1 bg-[#EBEBEB] rounded border border-[#D8D8D4] hover:bg-[#1A1A1A]/5 cursor-pointer">Filter</button>
+                  <button className="px-2.5 py-1 bg-[#1A1A1A] text-white rounded cursor-pointer">New Company</button>
+                </div>
+              </div>
+
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-[#D8D8D4]/60 text-[#6B6B6B]">
+                    <th className="py-2.5 text-left font-semibold">COMPANY</th>
+                    <th className="py-2.5 text-left font-semibold">URL</th>
+                    <th className="py-2.5 text-left font-semibold">CREATED BY</th>
+                    <th className="py-2.5 text-left font-semibold">STAGE</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {[
+                    { name: 'Anthropic', url: 'anthropic.com', user: 'Dario Amodei', stage: 'Prospect' },
+                    { name: 'Slack', url: 'slack.com', user: 'Stewart Butterfield', stage: 'Active' },
+                    { name: 'Notion', url: 'notion.so', user: 'Ivan Zhao', stage: 'Contract' },
+                    { name: 'Figma', url: 'figma.com', user: 'Dylan Field', stage: 'Lead' }
+                  ].map((row, i) => (
+                    <tr key={i} className="border-b border-[#D8D8D4]/40 hover:bg-[#F5F4F0]/50">
+                      <td className="py-3 font-semibold text-[#1A1A1A] flex items-center gap-2">
+                        <div className="w-4 h-4 bg-[#0055FF] rounded-sm" />
+                        {row.name}
+                      </td>
+                      <td className="py-3 font-mono text-[#6B6B6B]">{row.url}</td>
+                      <td className="py-3 font-semibold">{row.user}</td>
+                      <td className="py-3">
+                        <span className="px-2 py-0.5 bg-[#0055FF]/10 text-[#0055FF] border border-[#0055FF]/20 rounded-full font-bold text-[10px]">
+                          {row.stage}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
@@ -804,7 +816,7 @@ export default function TwentyShowcase() {
             <SectionPill label="The Problem." />
             
             <SectionLabel>
-              A custom CRM gives your org an edge, but building <strong className="font-serif italic font-normal text-[#4444FF]">one comes with tradeoffs</strong>
+              A custom CRM gives your org an edge, but building <strong className="font-serif italic font-normal text-[#0055FF]">one comes with tradeoffs</strong>
             </SectionLabel>
 
             <div className="flex flex-col gap-4 mt-2">
