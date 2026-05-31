@@ -56,7 +56,7 @@ export default function Products({ setCurrentPage }: ProductsProps) {
   ]
 
   return (
-    <div className="relative w-full pt-32 pb-24 px-6 bg-brand-charcoal text-left">
+    <div className="relative w-full pt-24 lg:pt-32 pb-16 lg:pb-24 px-6 bg-brand-charcoal text-left">
       {/* Background spotlights & overlays */}
       <div className="absolute inset-0 grid-pattern pointer-events-none z-0"></div>
       <div className="absolute top-0 left-0 right-0 h-[60vh] radial-spotlight pointer-events-none z-0"></div>
@@ -77,7 +77,7 @@ export default function Products({ setCurrentPage }: ProductsProps) {
         </div>
 
         {/* Tab Selector Buttons */}
-        <div className="flex justify-start border-b border-brand-offwhite/5 pb-1">
+        <div className="flex justify-start border-b border-brand-offwhite/5 pb-1 overflow-x-auto scrollbar-none whitespace-nowrap">
           <div className="flex gap-2">
             {[
               { id: 'ams', label: 'Alif AMS', icon: Cpu },
@@ -86,14 +86,17 @@ export default function Products({ setCurrentPage }: ProductsProps) {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as 'ams' | 'wms' | 'mobile')}
-                className={`flex items-center gap-2 px-6 py-3.5 text-xs font-semibold font-mono tracking-wider transition-all border-b-2 cursor-pointer ${
+                onClick={(e) => {
+                  setActiveTab(tab.id as 'ams' | 'wms' | 'mobile')
+                  ;(e.currentTarget as HTMLButtonElement).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+                }}
+                className={`flex items-center gap-2 px-6 py-3.5 text-xs font-semibold font-mono tracking-wider transition-all border-b-2 cursor-pointer shrink-0 ${
                   activeTab === tab.id
                     ? 'border-brand-gold text-brand-gold'
                     : 'border-transparent text-brand-gray hover:text-brand-offwhite'
                 }`}
               >
-                <tab.icon className="w-4 h-4" />
+                <tab.icon className="w-4 h-4 shrink-0" />
                 {tab.label}
               </button>
             ))}

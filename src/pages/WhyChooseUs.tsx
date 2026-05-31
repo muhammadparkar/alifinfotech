@@ -49,7 +49,7 @@ export default function WhyChooseUs({ setCurrentPage }: WhyChooseUsProps) {
   ]
 
   return (
-    <div className="relative w-full pt-32 pb-24 px-6 bg-brand-charcoal text-left">
+    <div className="relative w-full pt-24 lg:pt-32 pb-16 lg:pb-24 px-6 bg-brand-charcoal text-left">
       {/* Background gradients */}
       <div className="absolute top-0 left-0 right-0 h-[60vh] radial-spotlight pointer-events-none z-0"></div>
       <div className="absolute top-[30vh] right-[10%] w-[300px] h-[300px] bg-brand-gold/2 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>

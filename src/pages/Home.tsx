@@ -61,6 +61,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
 
   // Slow gold/amber canvas particle network background logic
   useEffect(() => {
+    if (window.innerWidth < 1024) return
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -254,7 +255,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
       <div className="absolute top-[60vh] left-[5%] w-[400px] h-[400px] bg-brand-sand/3 rounded-full blur-[180px] pointer-events-none animate-pulse-glow" style={{ animationDelay: '-6s' }}></div>
 
       {/* 1. HERO SECTION (Asymmetric Left-Aligned Editorial Style) */}
-      <section className="relative min-h-screen flex items-center px-6 pt-28 pb-16 z-10 overflow-hidden">
+      <section className="relative min-h-[auto] lg:min-h-screen flex items-center px-6 pt-24 lg:pt-28 pb-16 lg:pb-24 z-10 overflow-hidden">
         {/* Animated Hero Background Illustration */}
         <motion.div 
           initial={{ opacity: 0, x: 60, scale: 0.98 }}
@@ -267,7 +268,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-transparent to-brand-charcoal opacity-95 pointer-events-none z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-brand-charcoal via-transparent to-brand-charcoal opacity-90 pointer-events-none z-0"></div>
 
-        <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0 opacity-80" />
+        <canvas ref={canvasRef} className="hidden lg:block absolute inset-0 pointer-events-none z-0 opacity-80" />
         
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
           <div className="lg:col-span-9 space-y-8 text-left relative z-10">
@@ -475,7 +476,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
           </div>
 
           {/* Product Tabs */}
-          <div className="flex border-b border-brand-offwhite/5">
+          <div className="flex border-b border-brand-offwhite/5 overflow-x-auto scrollbar-none whitespace-nowrap">
             {[
               { id: 'ams', name: 'Alif AMS (Asset Management)' },
               { id: 'wms', name: 'Alif WMS (Warehouse Control)' },
@@ -483,8 +484,11 @@ export default function Home({ setCurrentPage }: HomeProps) {
             ].map((t) => (
               <button
                 key={t.id}
-                onClick={() => setActiveProductTab(t.id)}
-                className={`py-4 px-6 text-xs font-semibold font-mono tracking-wider transition-all border-b-2 cursor-pointer ${
+                onClick={(e) => {
+                  setActiveProductTab(t.id)
+                  ;(e.currentTarget as HTMLButtonElement).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+                }}
+                className={`py-4 px-6 text-xs font-semibold font-mono tracking-wider transition-all border-b-2 cursor-pointer shrink-0 ${
                   activeProductTab === t.id
                     ? 'border-brand-gold text-brand-gold'
                     : 'border-transparent text-brand-gray hover:text-brand-offwhite'
