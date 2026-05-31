@@ -1,36 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* Color System Extracted From Logo */
-  --color-bg: #050810;              /* near-black, cooler than pure black */
-  --color-surface: #0b1120;         /* dark navy card/section backgrounds */
-  --color-surface-2: #111c35;       /* elevated surfaces, nav bg on scroll */
-  --color-border: rgba(0, 180, 255, 0.10); /* subtle cyan border */
+  /* Color System from Twenty.com */
+  --color-bg: #F5F4F0;              /* off-white background */
+  --color-surface: #EBEBEB;         /* light grey for alternate sections */
+  --color-surface-2: #FFFFFF;       /* white background for cards */
+  --color-border: #D8D8D4;          /* thin border line */
   
-  --color-accent: #00c8f8;          /* cyan — primary accent from logo arrow tip */
-  --color-accent-2: #1a56db;        /* electric blue — from logo arrow base */
-  --color-accent-glow: rgba(0, 200, 248, 0.15); /* glow for hover states */
+  --color-accent: #4444FF;          /* cobalt blue accent */
+  --color-accent-2: #1C1C1C;        /* dark accent */
+  --color-accent-glow: rgba(68, 68, 255, 0.08); /* subtle blue glow */
   
-  --color-text-primary: #f0f4ff;     /* near-white with a cool blue tint */
-  --color-text-secondary: #7a90b8;   /* muted navy-grey for body/descriptions */
-  --color-text-muted: #3d5070;       /* disabled states, placeholders */
+  --color-text-primary: #1A1A1A;     /* dark text */
+  --color-text-secondary: #6B6B6B;   /* muted text */
+  --color-text-muted: #999999;       /* disabled/placeholder text */
 
   /* Typography System */
-  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
+  --font-heading: 'DM Serif Display', serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-mono: 'DM Sans', sans-serif;
 }
 
 @theme {
   --color-brand-charcoal: var(--color-bg);
-  --color-brand-charcoal-dark: var(--color-bg);
+  --color-brand-charcoal-dark: #1C1C1C; /* Keep dark sections strictly to `#1C1C1C` */
   --color-brand-charcoal-light: var(--color-surface);
   --color-brand-offwhite: var(--color-text-primary);
   --color-brand-gray: var(--color-text-secondary);
   --color-brand-gold: var(--color-accent);
   --color-brand-gold-dark: var(--color-accent-2);
-  --color-brand-gold-light: var(--color-accent);
-  --color-brand-amber: var(--color-accent-2);
+  --color-brand-gold-light: #5555FF;
+  --color-brand-amber: var(--color-accent);
   --color-brand-sand: var(--color-accent);
 
   --font-serif: var(--font-heading);
@@ -51,13 +52,13 @@ body {
 /* Typography Base Elements */
 h1, h2 {
   font-family: var(--font-heading);
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-weight: normal;
+  letter-spacing: -0.02em;
   color: var(--color-text-primary);
 }
 
 h3, h4 {
-  font-family: var(--font-heading);
+  font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--color-text-primary);
@@ -70,26 +71,35 @@ p {
   line-height: 1.65;
 }
 
+/* Ensure em tags in headings render as beautiful serif italics */
+h1 em, h2 em, h3 em, h4 em, .twenty-serif em {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: normal;
+}
+
 /* Buttons (primary) */
 button.bg-brand-gold,
 a.bg-brand-gold,
 .btn-primary {
-  background: linear-gradient(135deg, #00c8f8 0%, #1a56db 100%) !important;
-  color: #050810 !important;
-  font-family: var(--font-mono) !important;
-  font-weight: 500 !important;
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-sans) !important;
+  font-weight: bold !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
-  transition: all 0.3s ease !important;
+  letter-spacing: 0.12em !important;
+  border-radius: 4px !important;
+  box-shadow: 3px 3px 0px rgba(26, 26, 26, 0.15) !important;
+  transition: all 0.2s ease !important;
 }
 
 button.bg-brand-gold:hover,
 a.bg-brand-gold:hover,
 .btn-primary:hover {
-  opacity: 0.95 !important;
-  filter: brightness(1.1) !important;
-  background: linear-gradient(135deg, #00c8f8 0%, #1a56db 100%) !important;
-  box-shadow: 0 0 15px rgba(0, 200, 248, 0.4) !important;
+  background: #2e2e2e !important;
+  color: #FFFFFF !important;
+  box-shadow: 3px 3px 0px rgba(26, 26, 26, 0.15) !important;
+  transform: translate(0px, 0px) !important;
 }
 
 /* Buttons (ghost/secondary) */
@@ -99,14 +109,15 @@ button.border-brand-offwhite\/5,
 button.border-brand-offwhite\/20,
 a.border-brand-offwhite\/10,
 a.border-brand-offwhite\/15 {
-  border: 1px solid var(--color-accent) !important;
-  color: var(--color-accent) !important;
+  border: 1px solid #1A1A1A !important;
+  color: #1A1A1A !important;
   background: transparent !important;
-  font-family: var(--font-mono) !important;
-  font-weight: 500 !important;
+  font-family: var(--font-sans) !important;
+  font-weight: bold !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
-  transition: all 0.3s ease !important;
+  letter-spacing: 0.12em !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
 }
 
 button.border-brand-offwhite\/10:hover,
@@ -115,20 +126,20 @@ button.border-brand-offwhite\/5:hover,
 button.border-brand-offwhite\/20:hover,
 a.border-brand-offwhite\/10:hover,
 a.border-brand-offwhite\/15:hover {
-  background: var(--color-accent-glow) !important;
-  border-color: var(--color-accent) !important;
-  color: var(--color-accent) !important;
-  box-shadow: 0 0 15px rgba(0, 200, 248, 0.25) !important;
+  background: rgba(26, 26, 26, 0.05) !important;
+  border-color: #1A1A1A !important;
+  color: #1A1A1A !important;
 }
 
 /* Section labels / eyebrows (small caps above headings) */
 .font-mono.text-brand-gold.uppercase,
 .eyebrow {
-  font-family: var(--font-mono) !important;
+  font-family: var(--font-sans) !important;
   text-transform: uppercase !important;
   color: var(--color-accent) !important;
-  letter-spacing: 0.15em !important;
+  letter-spacing: 0.12em !important;
   font-size: 0.75rem !important;
+  font-weight: bold !important;
 }
 
 /* Custom Webkit Scrollbars */
@@ -144,69 +155,74 @@ a.border-brand-offwhite\/15:hover {
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-surface-2);
+  background: var(--color-border);
 }
 
 /* Premium Tailwind v4 Utility Directives */
 @utility text-gradient-gold {
-  background: linear-gradient(135deg, #00c8f8 0%, #1a56db 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-accent);
 }
 
 @utility text-gradient-amber {
-  background: linear-gradient(135deg, #00c8f8 0%, #1a56db 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-accent);
 }
 
 @utility glass-card {
-  background: rgba(11, 17, 32, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--color-surface-2);
   border: 1px solid var(--color-border);
 }
 
 @utility glass-panel {
-  background: rgba(17, 28, 53, 0.9);
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
-  border: 1px solid rgba(0, 180, 255, 0.05);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
   position: relative;
 }
 
-/* Dropdown Hover Bridge to prevent premature closing */
-.glass-panel::before {
-  content: '';
-  position: absolute;
-  top: -16px;
-  left: 0;
-  right: 0;
-  height: 16px;
-  background: transparent;
-}
-
 @utility glow-gold {
-  box-shadow: 0 0 50px var(--color-accent-glow);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 @utility glow-gold-strong {
-  box-shadow: 0 0 30px rgba(0, 200, 248, 0.25);
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.04);
 }
 
-/* Fading Stripe-like grid background overlay */
+/* 2x2 dotted dither overlay pattern */
+@utility dither-pattern {
+  background-image: radial-gradient(#1a1a1a 20%, transparent 20%),
+                    radial-gradient(#1a1a1a 20%, transparent 20%);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+  mix-blend-mode: multiply;
+  opacity: 0.15;
+}
+
+@utility dither-pattern-dark {
+  background-image: radial-gradient(#ffffff 15%, transparent 15%),
+                    radial-gradient(#ffffff 15%, transparent 15%);
+  background-size: 3px 3px;
+  background-position: 0 0, 1.5px 1.5px;
+  mix-blend-mode: overlay;
+  opacity: 0.25;
+}
+
+/* Elegant CSS Dither Overlay for Images */
+@utility dither-image {
+  filter: grayscale(1) contrast(1.5) brightness(0.9);
+  mix-blend-mode: multiply;
+}
+
+/* Grid Pattern overlays styled in alignment with twenty.com */
 @utility grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(0, 180, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 180, 255, 0.02) 1px, transparent 1px);
-  background-size: 36px 36px;
-  mask-image: radial-gradient(circle 800px at 50% 50%, black 40%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle 800px at 50% 50%, black 40% ,transparent 100%);
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle 800px at 50% 50%, black 50%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 800px at 50% 50%, black 50%, transparent 100%);
 }
 
-/* Radial spotlight effect behind heroes */
 @utility radial-spotlight {
-  background: radial-gradient(circle 600px at 50% -100px, rgba(0, 200, 248, 0.08), transparent 80%);
+  background: radial-gradient(circle 800px at 50% -100px, rgba(68, 68, 255, 0.03), transparent 80%);
 }
 
 @utility scrollbar-none {
@@ -219,20 +235,18 @@ a.border-brand-offwhite\/15:hover {
 
 /* Code block terminal styles */
 .terminal-window {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  font-family: var(--font-mono);
+  background: var(--color-accent-2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-sans);
 }
 
 /* Keyframe animations */
 @keyframes pulseGlow {
   0%, 100% {
-    opacity: 0.08;
-    transform: scale(1);
+    opacity: 0.04;
   }
   50% {
-    opacity: 0.18;
-    transform: scale(1.1);
+    opacity: 0.1;
   }
 }
 
@@ -253,13 +267,11 @@ html {
   background-color: var(--color-bg);
 }
 
-/* Safari / WebKit performance fixes on Mobile */
+/* WebKit performance optimizations */
 @media (max-width: 1023px) {
-  .animate-pulse-glow {
-    display: none !important;
-  }
   .grid-pattern {
     mask-image: none !important;
     -webkit-mask-image: none !important;
   }
 }
+

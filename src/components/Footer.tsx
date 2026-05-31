@@ -12,23 +12,29 @@ export default function Footer({ setCurrentPage }: FooterProps) {
   }
 
   return (
-    <footer className="bg-brand-charcoal-dark border-t border-brand-offwhite/5 py-12 relative overflow-hidden">
-      {/* Background radial accent */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-gold/2 rounded-full blur-[120px] pointer-events-none"></div>
+    <footer className="bg-[#F5F4F0] border-t border-[#D8D8D4] py-16 px-6 relative overflow-hidden font-sans text-left">
+      <div className="max-w-7xl mx-auto bg-white border border-[#D8D8D4] rounded-[12px] p-8 sm:p-10 shadow-[4px_10px_40px_rgba(0,0,0,0.02)] relative overflow-hidden">
+        {/* Decorative dots in the background */}
+        <div className="absolute top-0 right-0 w-32 h-32 dither-pattern pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-brand-offwhite/5">
+        {/* Corner markers */}
+        <span className="absolute top-2 left-2 text-[#AAAAAA] font-mono select-none" style={{ fontSize: 16, lineHeight: 1 }}>+</span>
+        <span className="absolute top-2 right-2 text-[#AAAAAA] font-mono select-none" style={{ fontSize: 16, lineHeight: 1 }}>+</span>
+        <span className="absolute bottom-2 left-2 text-[#AAAAAA] font-mono select-none" style={{ fontSize: 16, lineHeight: 1 }}>+</span>
+        <span className="absolute bottom-2 right-2 text-[#AAAAAA] font-mono select-none" style={{ fontSize: 16, lineHeight: 1 }}>+</span>
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-[#D8D8D4]/60 relative z-10">
           {/* Brand Info */}
           <div className="flex items-center cursor-pointer select-none" onClick={() => handleLinkClick('home')}>
             <img
               src="/index-logo.png"
               alt="Alif Info Tech Logo"
-              className="h-9 w-auto object-contain transition-transform duration-300 hover:scale-[1.02]"
+              className="h-8 w-auto object-contain transition-transform duration-300 hover:scale-[1.02]"
             />
           </div>
 
           {/* Navigation links */}
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] text-brand-gray font-mono uppercase tracking-[0.1em]">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] text-[#6B6B6B] font-bold uppercase tracking-[0.08em]">
             {[
               { label: 'Home', page: 'home' },
               { label: 'Services', page: 'services' },
@@ -40,11 +46,12 @@ export default function Footer({ setCurrentPage }: FooterProps) {
               { label: 'Clients', page: 'clients' },
               { label: 'About', page: 'about' },
               { label: 'Contact', page: 'contact' },
+              { label: 'Twenty Design Ref', page: 'twenty-design-system' },
             ].map((link) => (
               <button
                 key={link.label}
                 onClick={() => handleLinkClick(link.page)}
-                className="hover:text-brand-gold transition-colors cursor-pointer"
+                className="hover:text-[#4444FF] hover:underline transition-colors cursor-pointer"
               >
                 {link.label}
               </button>
@@ -57,7 +64,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
               href="https://linkedin.com/company/alif-info-tech-services-wll"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-brand-charcoal-light flex items-center justify-center text-brand-gray hover:text-brand-gold hover:bg-brand-charcoal border border-brand-offwhite/5 transition-all cursor-pointer"
+              className="w-8 h-8 rounded-[4px] bg-[#F5F4F0] flex items-center justify-center text-[#6B6B6B] hover:text-[#4444FF] border border-[#D8D8D4] transition-all cursor-pointer"
               title="LinkedIn Profile"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +73,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
             </a>
             <a
               href="mailto:info@alifinfotech.net"
-              className="w-9 h-9 rounded-full bg-brand-charcoal-light flex items-center justify-center text-brand-gray hover:text-brand-gold hover:bg-brand-charcoal border border-brand-offwhite/5 transition-all cursor-pointer"
+              className="w-8 h-8 rounded-[4px] bg-[#F5F4F0] flex items-center justify-center text-[#6B6B6B] hover:text-[#4444FF] border border-[#D8D8D4] transition-all cursor-pointer"
               title="Email Us"
             >
               <Mail className="w-4 h-4" />
@@ -75,10 +82,10 @@ export default function Footer({ setCurrentPage }: FooterProps) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-brand-gray font-mono">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-[#6B6B6B] font-mono relative z-10">
           <p>© {new Date().getFullYear()} Alif Info Tech Services WLL. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <span className="text-[9px] text-brand-gold-dark font-mono uppercase tracking-widest bg-brand-charcoal px-2.5 py-1 rounded border border-brand-offwhite/5 select-none">
+            <span className="text-[9px] text-[#4444FF] font-bold uppercase tracking-widest bg-[#F5F4F0] px-2.5 py-1 rounded-[3px] border border-[#D8D8D4] select-none">
               Doha HQ | Hyderabad Lab
             </span>
           </div>

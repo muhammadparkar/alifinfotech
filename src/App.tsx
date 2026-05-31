@@ -16,6 +16,7 @@ import WhyChooseUs from './pages/WhyChooseUs'
 import Clients from './pages/Clients'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import TwentyShowcase from './components/TwentyDesignSystem'
 
 function App() {
   const [currentPage, setCurrentPage] = useState<string>('home')
@@ -35,6 +36,7 @@ function App() {
         'clients',
         'about',
         'contact',
+        'twenty-design-system',
       ]
       
       if (!hash || hash === '/' || hash === '') {
@@ -63,7 +65,9 @@ function App() {
       .join(' ')
 
     document.title =
-      currentPage === 'home'
+      currentPage === 'twenty-design-system'
+        ? 'Twenty.com Design System Visual Reference Suite'
+        : currentPage === 'home'
         ? 'Alif Info Tech | Transforming Ideas into Digital Solutions'
         : `Alif Info Tech | ${formattedTitle}`
   }, [currentPage])
@@ -95,13 +99,19 @@ function App() {
         return <About />
       case 'contact':
         return <Contact />
+      case 'twenty-design-system':
+        return <TwentyShowcase />
       default:
         return <Home setCurrentPage={setCurrentPage} />
     }
   }
 
+  if (currentPage === 'twenty-design-system') {
+    return <TwentyShowcase />
+  }
+
   return (
-    <div className="flex flex-col min-h-screen bg-[#050814] text-slate-100 antialiased selection:bg-cyan-500/30 selection:text-white">
+    <div className="flex flex-col min-h-screen bg-[#F5F4F0] text-[#1A1A1A] antialiased selection:bg-[#4444FF]/25 selection:text-[#1A1A1A]">
       {/* Sticky Header */}
       <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 
