@@ -11,21 +11,35 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   return (
     <main>
-      <PageHero
-        eyebrow="Our Products"
-        title="Purpose-Built Software\nfor Modern Operations"
-        subtitle="Three products. One ecosystem. Built to work together and scale with your business."
-      />
+      <div data-bg="#F4F7FF" data-text="#0A1240" data-accent="#00D4FF">
+        <PageHero
+          eyebrow="Our Products"
+          title="Purpose-Built Software\nfor Modern Operations"
+          subtitle="Three products. One ecosystem. Built to work together and scale with your business."
+        />
+      </div>
 
       <section style={{ padding: 'clamp(60px, 8vh, 100px) 0' }}>
         <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
-          {PRODUCTS.map((product, i) => (
-            <ProductSection key={product.id} product={product} reverse={i % 2 === 1} />
-          ))}
+          {PRODUCTS.map((product, i) => {
+            // Assign a unique theme color to each product section
+            const theme = 
+              product.id === 'ams' ? { bg: '#F4F7FF', text: '#0A1240' } :
+              product.id === 'wms' ? { bg: '#EEF1FC', text: '#0A1240' } :
+              { bg: '#0D1B5E', text: '#FFFFFF' }; // Mobile app in gorgeous tech dark mode!
+            
+            return (
+              <div key={product.id} data-bg={theme.bg} data-text={theme.text} data-accent="#00D4FF" style={{ margin: '0 -10vw', padding: '0 10vw' }}>
+                <ProductSection product={product} reverse={i % 2 === 1} />
+              </div>
+            );
+          })}
         </div>
       </section>
 
-      <AlifCTA />
+      <div data-bg="#0D1B5E" data-text="#FFFFFF" data-accent="#00D4FF">
+        <AlifCTA />
+      </div>
     </main>
   );
 }

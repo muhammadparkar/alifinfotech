@@ -22,13 +22,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <AlifScrollColorSystem>
-          <AlifCursor />
-          <AlifNav />
-          <FloatingContact />
-          <div style={{ paddingTop: '56px' }}>
-            {children}
+          {/* Animated B2B SaaS mesh background orbs at absolute bottom */}
+          <div className="mesh-gradient-container" aria-hidden="true">
+            <div className="blob blob-cyan" />
+            <div className="blob blob-purple" />
+            <div className="blob blob-green" />
           </div>
-          <AlifFooter />
+
+          {/* Futuristic blueprint technical grid overlay */}
+          <div className="tech-grid-overlay" aria-hidden="true" />
+
+          {/* Elevated Content Layer to prevent background bleeding */}
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <AlifCursor />
+            <AlifNav />
+            <FloatingContact />
+            <div style={{ paddingTop: '56px' }}>
+              {children}
+            </div>
+            <AlifFooter />
+          </div>
         </AlifScrollColorSystem>
       </body>
     </html>

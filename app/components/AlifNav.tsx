@@ -37,17 +37,13 @@ export default function AlifNav() {
   return (
     <>
       <nav
+        className={`nav-container ${scrolled ? 'scrolled' : ''}`}
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
           height: '56px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '0 clamp(16px, 4vw, 40px)',
           transform: hidden ? 'translateY(-100%)' : 'translateY(0)',
-          transition: 'transform 0.35s ease, background 0.3s ease, backdrop-filter 0.3s ease',
-          background: scrolled ? 'rgba(244,247,255,0.88)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(13,27,94,0.07)' : 'none',
         }}
       >
         {/* Logo */}
@@ -56,21 +52,18 @@ export default function AlifNav() {
             <div style={{
               position: 'absolute', inset: 0,
               clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-              background: 'var(--navy, #0D1B5E)',
+              background: 'var(--text)',
+              transition: 'background 0.25s ease',
             }} />
             <div style={{
               position: 'absolute', bottom: '2px', left: '50%', transform: 'translateX(-50%)',
               width: '13px', height: '9px',
               clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-              background: '#00D4FF',
+              background: 'var(--accent)',
+              transition: 'background 0.25s ease',
             }} />
           </div>
-          <span style={{
-            fontFamily: 'DM Sans, system-ui, sans-serif',
-            fontSize: '12px', fontWeight: 500,
-            letterSpacing: '0.1em', color: 'var(--text-dark, #0A1240)',
-            textTransform: 'uppercase',
-          }}>
+          <span className="nav-logo-text">
             Alif Info Tech
           </span>
         </Link>
@@ -86,19 +79,7 @@ export default function AlifNav() {
             >
               <Link
                 href={link.href}
-                style={{
-                  fontFamily: 'DM Sans, system-ui, sans-serif',
-                  fontSize: '12px', fontWeight: 400,
-                  color: isActive(link.href) ? 'var(--cyan, #00D4FF)' : 'var(--text-dark, #0A1240)',
-                  letterSpacing: '0.02em',
-                  padding: '6px 10px',
-                  borderRadius: '2px',
-                  display: 'flex', alignItems: 'center', gap: '4px',
-                  transition: 'color 0.2s ease',
-                  whiteSpace: 'nowrap',
-                }}
-                onMouseEnter={e => { if (!isActive(link.href)) (e.currentTarget as HTMLElement).style.color = '#00D4FF'; }}
-                onMouseLeave={e => { if (!isActive(link.href)) (e.currentTarget as HTMLElement).style.color = 'var(--text-dark, #0A1240)'; }}
+                className={`nav-desktop-link ${isActive(link.href) ? 'active' : ''}`}
               >
                 {link.label}
                 {link.children && <span style={{ fontSize: '9px', opacity: 0.6 }}>▾</span>}
@@ -106,18 +87,17 @@ export default function AlifNav() {
 
               {/* Dropdown */}
               {link.children && openDropdown === link.label && (
-                <div style={{
-                  position: 'absolute', top: '100%', left: '0',
-                  background: 'rgba(244,247,255,0.97)',
-                  backdropFilter: 'blur(16px)',
-                  border: '1px solid rgba(13,27,94,0.1)',
-                  borderRadius: '4px',
-                  padding: '16px',
-                  minWidth: '240px',
-                  zIndex: 200,
-                  boxShadow: '0 16px 48px rgba(13,27,94,0.12)',
-                  display: 'flex', flexDirection: 'column', gap: '16px',
-                }}>
+                <div 
+                  className="nav-dropdown-menu"
+                  style={{
+                    position: 'absolute', top: '100%', left: '0',
+                    borderRadius: '4px',
+                    padding: '16px',
+                    minWidth: '240px',
+                    zIndex: 200,
+                    display: 'flex', flexDirection: 'column', gap: '16px',
+                  }}
+                >
                   {link.children.map(group => (
                     <div key={group.group}>
                       {group.group && (
@@ -135,23 +115,12 @@ export default function AlifNav() {
                           <Link
                             key={item.label}
                             href={item.href}
+                            className="nav-dropdown-item"
                             style={{
                               fontFamily: 'DM Sans, system-ui, sans-serif',
                               fontSize: '13px', fontWeight: 300,
-                              color: 'var(--text-dark, #0A1240)',
                               padding: '6px 8px', borderRadius: '2px',
-                              transition: 'background 0.15s ease, color 0.15s ease',
                               display: 'flex', flexDirection: 'column', gap: '1px',
-                            }}
-                            onMouseEnter={e => {
-                              const el = e.currentTarget as HTMLElement;
-                              el.style.background = 'rgba(0,212,255,0.08)';
-                              el.style.color = '#00D4FF';
-                            }}
-                            onMouseLeave={e => {
-                              const el = e.currentTarget as HTMLElement;
-                              el.style.background = 'transparent';
-                              el.style.color = 'var(--text-dark, #0A1240)';
                             }}
                           >
                             {item.label}
@@ -179,7 +148,11 @@ export default function AlifNav() {
           style={{ display: 'none', flexDirection: 'column', gap: '5px', padding: '4px', cursor: 'none' }}
         >
           {[0, 1, 2].map(i => (
-            <span key={i} style={{ display: 'block', width: '22px', height: '1.5px', background: 'var(--text-dark, #0A1240)', borderRadius: '1px' }} />
+            <span 
+              key={i} 
+              className="nav-hamburger-bar"
+              style={{ display: 'block', width: '22px', height: '1.5px', borderRadius: '1px' }} 
+            />
           ))}
         </button>
       </nav>

@@ -11,78 +11,86 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <main>
-      <PageHero
-        eyebrow="What We Offer"
-        title="Empowering Businesses\nwith Tailored IT Solutions"
-        subtitle="From custom software development to seamless cloud integration, our solutions are built around your goals — not a template."
-      />
+      <div data-bg="#F4F7FF" data-text="#0A1240" data-accent="#00D4FF">
+        <PageHero
+          eyebrow="What We Offer"
+          title="Empowering Businesses\nwith Tailored IT Solutions"
+          subtitle="From custom software development to seamless cloud integration, our solutions are built around your goals — not a template."
+        />
 
-      {/* Services accordion section */}
-      <section style={{ padding: 'clamp(60px, 8vh, 100px) 0' }}>
-        <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
-          {SERVICES.map((svc, i) => (
-            <ServiceRow key={svc.num} service={svc} index={i} />
-          ))}
-        </div>
-      </section>
+        {/* Services accordion section */}
+        <section style={{ padding: 'clamp(60px, 8vh, 100px) 0' }}>
+          <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
+            {SERVICES.map((svc, i) => (
+              <ServiceRow key={svc.num} service={svc} index={i} />
+            ))}
+          </div>
+        </section>
+      </div>
 
       {/* Alif Studio / ERP Platform */}
-      <section style={{ padding: 'clamp(60px, 8vh, 100px) 0', background: 'rgba(13,27,94,0.03)' }}>
-        <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'clamp(40px, 5vw, 80px)', alignItems: 'start' }}>
-            <div>
-              <span className="section-label" style={{ marginBottom: '16px', display: 'block' }}>Alif Studio</span>
-              <h2 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 300, fontStyle: 'italic', color: 'var(--text)', lineHeight: 1.15, marginBottom: '20px' }}>
-                AI-Powered ERP Platform
-              </h2>
-              <p style={{ fontFamily: 'DM Sans', fontSize: '15px', fontWeight: 300, color: 'var(--text)', opacity: 0.65, lineHeight: 1.8, marginBottom: '24px' }}>
-                An Artificial Intelligence-powered, quick-launch ERP platform providing the best enterprise resource planning solutions for businesses of all sizes.
-              </p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {['Cloud Deployment', 'Mobile ERP', 'Third-party Integrations'].map(cap => (
-                  <span key={cap} className="tag-pill">{cap}</span>
-                ))}
+      <div data-bg="#EEF1FC" data-text="#0A1240" data-accent="#00D4FF">
+        <section style={{ padding: 'clamp(60px, 8vh, 100px) 0' }}>
+          <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'clamp(40px, 5vw, 80px)', alignItems: 'start' }}>
+              <div>
+                <span className="section-label" style={{ marginBottom: '16px', display: 'block' }}>Alif Studio</span>
+                <h2 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 300, fontStyle: 'italic', color: 'var(--text)', lineHeight: 1.15, marginBottom: '20px' }}>
+                  AI-Powered ERP Platform
+                </h2>
+                <p style={{ fontFamily: 'DM Sans', fontSize: '15px', fontWeight: 300, color: 'var(--text)', opacity: 0.65, lineHeight: 1.8, marginBottom: '24px' }}>
+                  An Artificial Intelligence-powered, quick-launch ERP platform providing the best enterprise resource planning solutions for businesses of all sizes.
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {['Cloud Deployment', 'Mobile ERP', 'Third-party Integrations'].map(cap => (
+                    <span key={cap} className="tag-pill">{cap}</span>
+                  ))}
+                </div>
+
+                {/* Circuit illustration */}
+                <CircuitSVG />
               </div>
 
-              {/* Circuit illustration */}
-              <CircuitSVG />
-            </div>
-
-            <div>
-              <p style={{ fontFamily: 'DM Sans', fontSize: '11px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '20px' }}>
-                ERP Modules
-              </p>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                {ERP_MODULES.map((mod, i) => (
-                  <div key={mod.name} className="bracket-card"
-                    style={{ background: 'rgba(13,27,94,0.04)', border: '1px solid rgba(13,27,94,0.08)', borderRadius: '4px', padding: '16px', transition: 'border-color 0.25s ease' }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                      <span style={{ fontFamily: 'DM Sans', fontSize: '10px', color: 'var(--accent)', opacity: 0.7 }}>{String(i + 1).padStart(2, '0')}</span>
-                      <h4 style={{ fontFamily: 'DM Sans', fontSize: '12px', fontWeight: 500, color: 'var(--text)' }}>{mod.name}</h4>
+              <div>
+                <p style={{ fontFamily: 'DM Sans', fontSize: '11px', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '20px' }}>
+                  ERP Modules
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                  {ERP_MODULES.map((mod, i) => (
+                    <div key={mod.name} className="bracket-card"
+                      style={{ background: 'rgba(13,27,94,0.04)', border: '1px solid rgba(13,27,94,0.08)', borderRadius: '4px', padding: '16px', transition: 'border-color 0.25s ease' }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                        <span style={{ fontFamily: 'DM Sans', fontSize: '10px', color: 'var(--accent)', opacity: 0.7 }}>{String(i + 1).padStart(2, '0')}</span>
+                        <h4 style={{ fontFamily: 'DM Sans', fontSize: '12px', fontWeight: 500, color: 'var(--text)' }}>{mod.name}</h4>
+                      </div>
+                      <p style={{ fontFamily: 'DM Sans', fontSize: '11px', fontWeight: 300, color: 'var(--text)', opacity: 0.55, lineHeight: 1.6 }}>{mod.desc}</p>
                     </div>
-                    <p style={{ fontFamily: 'DM Sans', fontSize: '11px', fontWeight: 300, color: 'var(--text)', opacity: 0.55, lineHeight: 1.6 }}>{mod.desc}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Alif Swift */}
-      <section style={{ padding: 'clamp(60px, 8vh, 100px) 0' }}>
-        <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
-          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-            <span className="section-label" style={{ display: 'block', marginBottom: '16px' }}>Alif Swift</span>
-            <blockquote style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(22px, 3vw, 34px)', fontWeight: 300, fontStyle: 'italic', color: 'var(--text)', lineHeight: 1.5 }}>
-              &ldquo;A sophisticated web-based cloud ERP application designed to provide micro, small, and medium enterprises with a cost-effective and rapidly deployable alternative to manual processes.&rdquo;
-            </blockquote>
+      <div data-bg="#F4F7FF" data-text="#0A1240" data-accent="#00D4FF">
+        <section style={{ padding: 'clamp(60px, 8vh, 100px) 0' }}>
+          <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
+            <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+              <span className="section-label" style={{ display: 'block', marginBottom: '16px' }}>Alif Swift</span>
+              <blockquote style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(22px, 3vw, 34px)', fontWeight: 300, fontStyle: 'italic', color: 'var(--text)', lineHeight: 1.5 }}>
+                &ldquo;A sophisticated web-based cloud ERP application designed to provide micro, small, and medium enterprises with a cost-effective and rapidly deployable alternative to manual processes.&rdquo;
+              </blockquote>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      <AlifCTA />
+      <div data-bg="#0D1B5E" data-text="#FFFFFF" data-accent="#00D4FF">
+        <AlifCTA />
+      </div>
     </main>
   );
 }

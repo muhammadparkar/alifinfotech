@@ -28,66 +28,72 @@ const SECURITY_FEATURES = [
 export default function SolutionsPage() {
   return (
     <main>
-      <PageHero
-        eyebrow="Our Solutions"
-        title="Smart Solutions for\nSmarter Businesses"
-        subtitle="Discover a powerful suite of web, app, and cloud solutions designed to elevate business efficiency. From custom development to enterprise tools, we have your growth covered."
-      />
+      <div data-bg="#F4F7FF" data-text="#0A1240" data-accent="#00D4FF">
+        <PageHero
+          eyebrow="Our Solutions"
+          title="Smart Solutions for\nSmarter Businesses"
+          subtitle="Discover a powerful suite of web, app, and cloud solutions designed to elevate business efficiency. From custom development to enterprise tools, we have your growth covered."
+        />
 
-      {/* Performance section */}
-      <section style={{ padding: 'clamp(60px, 8vh, 100px) 0' }}>
-        <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(32px, 5vw, 80px)', marginBottom: 'clamp(48px, 6vh, 72px)', alignItems: 'end' }}>
-            <div>
-              <span className="section-label" style={{ display: 'block', marginBottom: '12px' }}>Performance</span>
-              <h2 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 300, fontStyle: 'italic', color: 'var(--text)', lineHeight: 1.15 }}>
-                Built for speed,<br />optimized for scale.
-              </h2>
+        {/* Performance section */}
+        <section style={{ padding: 'clamp(60px, 8vh, 100px) 0' }}>
+          <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(32px, 5vw, 80px)', marginBottom: 'clamp(48px, 6vh, 72px)', alignItems: 'end' }}>
+              <div>
+                <span className="section-label" style={{ display: 'block', marginBottom: '12px' }}>Performance</span>
+                <h2 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 300, fontStyle: 'italic', color: 'var(--text)', lineHeight: 1.15 }}>
+                  Built for speed,<br />optimized for scale.
+                </h2>
+              </div>
+              <p style={{ fontFamily: 'DM Sans', fontSize: '15px', fontWeight: 300, color: 'var(--text)', opacity: 0.6, lineHeight: 1.8 }}>
+                Every solution we deliver is engineered for performance from day one. We eliminate bottlenecks before they reach production.
+              </p>
             </div>
-            <p style={{ fontFamily: 'DM Sans', fontSize: '15px', fontWeight: 300, color: 'var(--text)', opacity: 0.6, lineHeight: 1.8 }}>
-              Every solution we deliver is engineered for performance from day one. We eliminate bottlenecks before they reach production.
-            </p>
-          </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-            {PERFORMANCE_FEATURES.map((feat, i) => (
-              <FeatureCard key={feat.name} feature={feat} index={i} icon={PERF_ICONS[i]} />
-            ))}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+              {PERFORMANCE_FEATURES.map((feat, i) => (
+                <FeatureCard key={feat.name} feature={feat} index={i} icon={PERF_ICONS[i]} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Security section */}
-      <section style={{ padding: 'clamp(60px, 8vh, 100px) 0', background: 'rgba(13,27,94,0.03)' }}>
-        <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(32px, 5vw, 80px)', marginBottom: 'clamp(48px, 6vh, 72px)', alignItems: 'end' }}>
-            <div>
-              <span className="section-label" style={{ display: 'block', marginBottom: '12px' }}>Security</span>
-              <h2 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 300, fontStyle: 'italic', color: 'var(--text)', lineHeight: 1.15 }}>
-                Secure Your Business<br />with Real Protection.
-              </h2>
-            </div>
-            <div>
-              <p style={{ fontFamily: 'DM Sans', fontSize: '15px', fontWeight: 300, color: 'var(--text)', opacity: 0.6, lineHeight: 1.8, marginBottom: '16px' }}>
-                ALIF is SOC 2 compliant, focused on protecting your operations with enterprise-grade security baked into every aspect of our managed solutions.
-              </p>
-              {/* SOC2 badge */}
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '10px 16px', background: 'rgba(0,212,255,0.07)', border: '1px solid rgba(0,212,255,0.2)', borderRadius: '4px' }}>
-                <ShieldSVG />
-                <span style={{ fontFamily: 'DM Sans', fontSize: '11px', fontWeight: 500, color: 'var(--accent)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>SOC 2 Compliant</span>
+      <div data-bg="#050816" data-text="#FFFFFF" data-accent="#00D4FF">
+        <section style={{ padding: 'clamp(60px, 8vh, 100px) 0' }}>
+          <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(32px, 5vw, 80px)', marginBottom: 'clamp(48px, 6vh, 72px)', alignItems: 'end' }}>
+              <div>
+                <span className="section-label" style={{ display: 'block', marginBottom: '12px' }}>Security</span>
+                <h2 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 300, fontStyle: 'italic', color: 'var(--text)', lineHeight: 1.15 }}>
+                  Secure Your Business<br />with Real Protection.
+                </h2>
+              </div>
+              <div>
+                <p style={{ fontFamily: 'DM Sans', fontSize: '15px', fontWeight: 300, color: 'var(--text)', opacity: 0.6, lineHeight: 1.8, marginBottom: '16px' }}>
+                  ALIF is SOC 2 compliant, focused on protecting your operations with enterprise-grade security baked into every aspect of our managed solutions.
+                </p>
+                {/* SOC2 badge */}
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '10px 16px', background: 'rgba(0,212,255,0.07)', border: '1px solid rgba(0,212,255,0.2)', borderRadius: '4px' }}>
+                  <ShieldSVG />
+                  <span style={{ fontFamily: 'DM Sans', fontSize: '11px', fontWeight: 500, color: 'var(--accent)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>SOC 2 Compliant</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-            {SECURITY_FEATURES.map((feat, i) => (
-              <FeatureCard key={feat.name} feature={feat} index={i} icon={SEC_ICONS[i]} />
-            ))}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+              {SECURITY_FEATURES.map((feat, i) => (
+                <FeatureCard key={feat.name} feature={feat} index={i} icon={SEC_ICONS[i]} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      <AlifCTA />
+      <div data-bg="#0D1B5E" data-text="#FFFFFF" data-accent="#00D4FF">
+        <AlifCTA />
+      </div>
     </main>
   );
 }

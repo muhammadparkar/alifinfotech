@@ -21,10 +21,41 @@ button { cursor: none; border: none; background: none; font-family: inherit; }
   --text-dark:   #0A1240;
   --text-muted:  #4A5A80;
 
+  /* Premium B2B SaaS Colors */
+  --space-black:   #050816;
+  --space-blue:    #091235;
+  --space-indigo:  #162454;
+
+  --ai-purple:      #8B5CF6;
+  --ai-purple-soft: #C4B5FD;
+
+  --tech-green:      #00FFB2;
+  --tech-green-soft: #7CFFD7;
+
+  --signal-amber:      #FFB800;
+  --signal-amber-soft: #FFD970;
+
+  /* Gradient Tokens */
+  --gradient-cyan:  linear-gradient(135deg, #0D1B5E 0%, #00D4FF 100%);
+  --gradient-ai:    linear-gradient(135deg, #00D4FF 0%, #8B5CF6 100%);
+  --gradient-space: linear-gradient(135deg, #050816 0%, #162454 100%);
+
+  /* Glow Filters */
+  --glow-cyan:   0 0 20px rgba(0, 212, 255, 0.35);
+  --glow-purple: 0 0 20px rgba(139, 92, 246, 0.35);
+  --glow-green:  0 0 20px rgba(0, 255, 178, 0.35);
+
+  /* Mesh Background Orbs */
+  --blob-cyan:   #00D4FF;
+  --blob-purple: #8B5CF6;
+  --blob-green:  #00FFB2;
+
   /* Runtime scroll values */
-  --bg:     #F4F7FF;
-  --text:   #0A1240;
-  --accent: #00D4FF;
+  --bg:          #F4F7FF;
+  --text:        #0A1240;
+  --accent:      #00D4FF;
+  --card-bg:     rgba(255, 255, 255, 0.75);
+  --card-border: rgba(13, 27, 94, 0.08);
 
   --easing-reveal: cubic-bezier(0.22, 1, 0.36, 1);
   --easing-menu:   cubic-bezier(0.76, 0, 0.24, 1);
@@ -515,11 +546,16 @@ body {
 
 /* Custom Client/Server Event Handler fixes for Next.js build */
 .bracket-card {
-  transition: border-color 0.25s ease, transform 0.25s ease !important;
+  background: var(--card-bg, rgba(255, 255, 255, 0.75)) !important;
+  border: 1px solid var(--card-border, rgba(13, 27, 94, 0.08)) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 6px !important;
+  transition: border-color 0.25s ease, transform 0.25s ease, background-color 0.25s ease, box-shadow 0.3s ease !important;
 }
 .bracket-card:hover {
-  border-color: rgba(0, 212, 255, 0.35) !important;
+  border-color: var(--accent) !important;
   transform: translateY(-3px) !important;
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.12) !important;
 }
 
 /* Demo Request button styling */
@@ -570,4 +606,230 @@ body {
 .contact-item:hover {
   opacity: 0.7 !important;
 }
+
+/* Workspace Interactive Redesign Classes */
+.partner-tile {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.3s ease !important;
+}
+.partner-tile:hover {
+  transform: translateY(-5px) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 12px 36px rgba(0, 212, 255, 0.12) !important;
+}
+.partner-tile:hover .partner-tile-logo {
+  transform: scale(1.05) !important;
+}
+.partner-tile.selected {
+  border-color: var(--accent) !important;
+  background: rgba(0, 212, 255, 0.03) !important;
+}
+
+/* Gird and search glowing focus */
+.search-input:focus {
+  border-color: rgba(0, 212, 255, 0.5) !important;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.15) !important;
+}
+
+/* Click scroll target glow indicator */
+.glowing-highlight {
+  animation: cardPulse 2s ease-in-out;
+}
+
+@keyframes cardPulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 212, 255, 0.4);
+    border-color: var(--accent);
+  }
+  50% {
+    box-shadow: 0 0 24px 8px rgba(0, 212, 255, 0.25);
+    border-color: var(--accent);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(0, 212, 255, 0);
+  }
+}
+
+/* Slide-out drawer animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes pingGlow {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.3; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+.close-drawer-btn:hover {
+  background: rgba(13,27,94,0.06) !important;
+}
+.drawer-action-btn {
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+.drawer-action-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0,212,255,0.35) !important;
+}
+
+/* =============================================
+   ANIMATED MESH GRADIENT BLUR BACKDROP
+   ============================================= */
+.mesh-gradient-container {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.05; /* Extremely subtle premium B2B SaaS glow layer */
+  filter: blur(100px);
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* Reduced scale to 0.5 - 0.7 visual influence to keep content primary */
+.blob-cyan {
+  top: 15%;
+  left: 10%;
+  width: 24vw;
+  height: 24vw;
+  background: var(--blob-cyan);
+  animation: floatA 25s ease-in-out infinite alternate;
+}
+
+.blob-purple {
+  bottom: 10%;
+  right: 15%;
+  width: 28vw;
+  height: 28vw;
+  background: var(--blob-purple);
+  animation: floatB 30s ease-in-out infinite alternate;
+}
+
+.blob-green {
+  top: 45%;
+  left: 55%;
+  width: 20vw;
+  height: 20vw;
+  background: var(--blob-green);
+  animation: floatC 22s ease-in-out infinite alternate;
+}
+
+/* Futuristic blueprint technical grid overlay */
+.tech-grid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+  opacity: 0.75;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+@keyframes floatA {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(4vw, 5vh) scale(1.08); }
+  100% { transform: translate(-2vw, -3vh) scale(0.95); }
+}
+
+@keyframes floatB {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-6vw, -4vh) scale(1.05); }
+  100% { transform: translate(3vw, 3vh) scale(0.92); }
+}
+
+@keyframes floatC {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-3vw, 5vh) scale(1.12); }
+  100% { transform: translate(3vw, -2vh) scale(0.97); }
+}
+
+/* =============================================
+   DYNAMIC NAVBAR CLASSES
+   ============================================= */
+.nav-container {
+  background: transparent;
+  transition: transform 0.35s ease, background 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease !important;
+}
+
+.nav-container.scrolled {
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid var(--card-border) !important;
+}
+
+.nav-logo-text {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text) !important;
+  transition: color 0.25s ease !important;
+}
+
+.nav-desktop-link {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text) !important;
+  letter-spacing: 0.02em;
+  padding: 6px 10px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease, opacity 0.2s ease !important;
+  white-space: nowrap;
+}
+
+.nav-desktop-link:hover {
+  color: var(--accent) !important;
+}
+
+.nav-desktop-link.active {
+  color: var(--accent) !important;
+  font-weight: 500;
+}
+
+.nav-dropdown-menu {
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: 0 16px 48px rgba(13, 27, 94, 0.12) !important;
+  transition: background-color 0.25s ease, border-color 0.25s ease !important;
+}
+
+.nav-dropdown-item {
+  color: var(--text) !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+}
+
+.nav-dropdown-item:hover {
+  background: rgba(0, 212, 255, 0.08) !important;
+  color: var(--accent) !important;
+}
+
+.nav-hamburger-bar {
+  background: var(--text) !important;
+  transition: background 0.25s ease !important;
+}
+
+
+
 
