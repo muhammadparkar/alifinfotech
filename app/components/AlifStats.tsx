@@ -2,156 +2,81 @@
 
 import { useEffect, useRef } from 'react';
 
-const DEFAULT_STATS = [
-  { value: 50, suffix: '+', label: 'Projects Delivered' },
-  { value: 8,  suffix: '',  label: 'Years of Craft' },
-  { value: 30, suffix: '+', label: 'Happy Clients' },
+const STATS = [
+  { value: 7,  suffix: '',  label: 'Core Services' },
+  { value: 7,  suffix: '+', label: 'Tech Partners' },
+  { value: 2,  suffix: '',  label: 'Global Offices' },
+  { value: 10, suffix: '+', label: 'Years of Craft' },
 ];
 
-interface Stat {
-  value: number;
-  suffix: string;
-  label: string;
-}
+function easeOutQuart(t: number) { return 1 - Math.pow(1 - t, 4); }
 
-interface AlifStatsProps {
-  items?: Stat[];
-}
-
-function easeOutQuart(t: number): number {
-  return 1 - Math.pow(1 - t, 4);
-}
-
-function animateCount(el: HTMLElement, target: number, suffix: string, duration = 2000) {
+function animateCount(el: HTMLElement, target: number, suffix: string, dur = 2200) {
   const start = performance.now();
-  const update = (now: number) => {
-    const elapsed = now - start;
-    const t = Math.min(elapsed / duration, 1);
-    const eased = easeOutQuart(t);
-    const current = Math.round(eased * target);
-    el.textContent = current + suffix;
-    if (t < 1) requestAnimationFrame(update);
+  const tick = (now: number) => {
+    const t = Math.min((now - start) / dur, 1);
+    el.textContent = Math.round(easeOutQuart(t) * target) + suffix;
+    if (t < 1) requestAnimationFrame(tick);
   };
-  requestAnimationFrame(update);
+  requestAnimationFrame(tick);
 }
 
-export default function AlifStats({ items = DEFAULT_STATS }: AlifStatsProps) {
+export default function AlifStats() {
   const sectionRef = useRef<HTMLElement>(null);
   const triggered  = useRef(false);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !triggered.current) {
-            triggered.current = true;
-            section.querySelectorAll<HTMLElement>('.stat-counter').forEach(el => {
-              const target = parseInt(el.dataset.target || '0', 10);
-              const suffix = el.dataset.suffix || '';
-              animateCount(el, target, suffix, 2000);
-            });
-            section.querySelectorAll('.fade-up').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 120);
-            });
-            observer.disconnect();
-          }
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !triggered.current) {
+        triggered.current = true;
+        el.querySelectorAll<HTMLElement>('.stat-counter').forEach((counter, i) => {
+          setTimeout(() => {
+            animateCount(counter, +counter.dataset.target!, counter.dataset.suffix!, 2200);
+          }, i * 120);
         });
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
+        el.querySelectorAll('.fade-up').forEach((f, i) => setTimeout(() => f.classList.add('visible'), i * 80));
+        obs.disconnect();
+      }
+    }, { threshold: 0.25 });
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      style={{
-        padding: '100px 8vw',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '60px',
-        borderTop: '1px solid rgba(10,18,64,0.08)',
-        borderBottom: '1px solid rgba(10,18,64,0.08)',
-      }}
-    >
-      {/* Label */}
-      <p
-        className="fade-up"
-        style={{
-          fontFamily: 'DM Sans, system-ui, sans-serif',
-          fontSize: '11px',
-          letterSpacing: '0.3em',
-          textTransform: 'uppercase',
-          color: 'var(--accent)',
-        }}
-      >
-        By the numbers
-      </p>
+    <section ref={sectionRef} style={{
+      padding: 'clamp(60px, 8vh, 100px) 0',
+      borderTop: '1px solid rgba(10,18,64,0.06)',
+      borderBottom: '1px solid rgba(10,18,64,0.06)',
+    }}>
+      <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
 
-      {/* Stats row */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '0',
-          maxWidth: '800px',
-          width: '100%',
-        }}
-      >
-        {items.map((stat, i) => (
-          <div key={stat.label} style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
-            {/* Stat */}
-            <div
-              className="fade-up"
-              style={{
-                flex: 1,
-                textAlign: 'center',
-                transitionDelay: `${i * 0.12}s`,
-              }}
-            >
-              <div
-                className="stat-counter stat-number"
+        <p className="section-label fade-up" style={{ textAlign: 'center', marginBottom: 'clamp(32px, 5vh, 52px)' }}>
+          By the numbers
+        </p>
+
+        <div className="stats-grid">
+          {STATS.map((stat, i) => (
+            <div key={stat.label} className="stats-cell fade-up" style={{ transitionDelay: `${i * 0.08}s` }}>
+              <div className="stat-number stat-counter"
                 data-target={stat.value}
                 data-suffix={stat.suffix}
-              >
+                style={{ marginBottom: '10px' }}>
                 0{stat.suffix}
               </div>
-              <p
-                style={{
-                  fontFamily: 'DM Sans, system-ui, sans-serif',
-                  fontSize: '12px',
-                  fontWeight: 400,
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  color: 'var(--text-muted, #5A6A9A)',
-                  marginTop: '8px',
-                }}
-              >
+              <p style={{
+                fontFamily: 'DM Sans, system-ui, sans-serif',
+                fontSize: '11px', fontWeight: 500,
+                letterSpacing: '0.18em', textTransform: 'uppercase',
+                color: 'var(--text)', opacity: 0.5,
+              }}>
                 {stat.label}
               </p>
             </div>
+          ))}
+        </div>
 
-            {/* Separator — not after last */}
-            {i < items.length - 1 && (
-              <div
-                style={{
-                  width: '1px',
-                  height: '80px',
-                  background: 'var(--text)',
-                  opacity: 0.1,
-                  flexShrink: 0,
-                }}
-              />
-            )}
-          </div>
-        ))}
       </div>
     </section>
   );

@@ -1,37 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
 
-/* ─── CSS Reset & Base ─────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* =============================================
+   RESET
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: none; border: none; background: none; font-family: inherit; }
 
-/* ─── Brand Color Variables ─────────────────────────────────────── */
+/* =============================================
+   BRAND VARIABLES
+   ============================================= */
 :root {
-  --navy:       #0D1B5E;
-  --navy-mid:   #1A2E8A;
-  --cyan:       #00D4FF;
-  --cyan-soft:  #7EEEFF;
-  --off-white:  #F4F7FF;
-  --light-gray: #EEF1F8;
-  --text-dark:  #0A1240;
-  --text-muted: #5A6A9A;
+  --navy:        #0D1B5E;
+  --navy-mid:    #1A2E8A;
+  --cyan:        #00D4FF;
+  --cyan-soft:   #7EEEFF;
+  --off-white:   #F4F7FF;
+  --light-gray:  #EEF1F8;
+  --text-dark:   #0A1240;
+  --text-muted:  #4A5A80;
 
-  /* Scroll-driven dynamic vars — controlled by JS */
+  /* Runtime scroll values */
   --bg:     #F4F7FF;
   --text:   #0A1240;
   --accent: #00D4FF;
 
-  --transition-nav: 0.35s ease;
-  --easing-reveal:  cubic-bezier(0.22, 1, 0.36, 1);
-  --easing-menu:    cubic-bezier(0.76, 0, 0.24, 1);
+  --easing-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+  --easing-menu:   cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Nav height reference */
+  --nav-h: 56px;
 }
 
-html {
-  scroll-behavior: auto;
-  -webkit-text-size-adjust: 100%;
-}
+/* =============================================
+   BASE
+   ============================================= */
+html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
 
 body {
   background: var(--bg);
@@ -41,101 +46,200 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   cursor: none;
-}
-
-/* ─── Custom Cursor ─────────────────────────────────────────────── */
-.cursor-outer,
-.cursor-inner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  border-radius: 50%;
-  will-change: transform;
-}
-
-.cursor-outer {
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid var(--accent);
-  background: transparent;
-  transform: translate(-50%, -50%);
-  transition: width 0.25s cubic-bezier(0.22,1,0.36,1),
-              height 0.25s cubic-bezier(0.22,1,0.36,1),
-              background 0.25s ease,
-              border-color 0.25s ease;
-}
-
-.cursor-outer.hovered {
-  width: 56px;
-  height: 56px;
-  background: rgba(0, 212, 255, 0.12);
-}
-
-.cursor-inner {
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  transform: translate(-50%, -50%);
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 @media (hover: none), (max-width: 768px) {
   body { cursor: auto; }
-  .cursor-outer,
-  .cursor-inner { display: none; }
+  .cursor-outer, .cursor-inner { display: none !important; }
+  button { cursor: pointer; }
+  a { cursor: pointer; }
 }
 
-/* ─── Typography Utilities ─────────────────────────────────────── */
-.font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
-.font-sans  { font-family: 'DM Sans', system-ui, sans-serif; }
-
-/* ─── Text Reveal ───────────────────────────────────────────────── */
-.reveal-wrapper {
-  overflow: hidden;
-  display: block;
+/* =============================================
+   CUSTOM CURSOR
+   ============================================= */
+.cursor-outer, .cursor-inner {
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999; border-radius: 50%;
+  will-change: transform;
+}
+.cursor-outer {
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--accent); background: transparent;
+  transition: width .3s var(--easing-reveal), height .3s var(--easing-reveal),
+              background .3s ease, border-color .3s ease, opacity .3s ease;
+}
+.cursor-outer.hovered {
+  width: 52px; height: 52px;
+  background: rgba(0,212,255,0.1);
+  border-color: rgba(0,212,255,0.6);
+}
+.cursor-inner {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  transition: background 0.3s ease;
 }
 
+/* =============================================
+   LAYOUT UTILITIES
+   ============================================= */
+.site-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 80px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* =============================================
+   TECH GRID BACKGROUND
+   ============================================= */
+.tech-grid-bg {
+  background-image: radial-gradient(circle, rgba(0,212,255,0.15) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 0 0;
+  animation: techGridPan 80s linear infinite;
+}
+
+/* =============================================
+   BRACKET CARD
+   ============================================= */
+.bracket-card {
+  position: relative;
+}
+.bracket-card::before,
+.bracket-card::after {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: rgba(0,212,255,0.3);
+  border-style: solid;
+  transition: border-color 0.35s ease, opacity 0.35s ease;
+  opacity: 0.7;
+}
+.bracket-card::before { top: 0; left: 0; border-width: 1.5px 0 0 1.5px; }
+.bracket-card::after  { bottom: 0; right: 0; border-width: 0 1.5px 1.5px 0; }
+.bracket-card:hover::before,
+.bracket-card:hover::after {
+  border-color: var(--accent);
+  opacity: 1;
+}
+
+/* =============================================
+   TAG PILLS
+   ============================================= */
+.tag-pill {
+  display: inline-flex; align-items: center;
+  padding: 4px 11px; border-radius: 2px;
+  border: 1px solid rgba(0,212,255,0.28);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(0,212,255,0.07);
+  white-space: nowrap;
+}
+
+/* =============================================
+   TEXT REVEAL
+   ============================================= */
+.reveal-wrapper { overflow: hidden; display: block; }
 .reveal-inner {
   display: block;
-  transform: translateY(105%);
-  opacity: 0;
-  transition: transform 1s cubic-bezier(0.22,1,0.36,1),
-              opacity 0.6s ease;
+  transform: translateY(108%); opacity: 0;
+  transition: transform 0.9s var(--easing-reveal), opacity 0.5s ease;
 }
+.reveal-inner.revealed { transform: translateY(0); opacity: 1; }
 
-.reveal-inner.revealed {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* ─── Section Fade Up ───────────────────────────────────────────── */
+/* =============================================
+   FADE UP
+   ============================================= */
 .fade-up {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* =============================================
+   SECTION LABEL (EYEBROW)
+   ============================================= */
+.section-label {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--accent);
+  display: block;
 }
 
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* =============================================
+   HORIZONTAL SCROLL — DESKTOP
+   ============================================= */
+.h-scroll-section { position: relative; height: 500vh; }
+.h-scroll-sticky {
+  position: sticky; top: 0; height: 100vh;
+  overflow: hidden; display: flex; align-items: center;
+}
+.h-scroll-rail {
+  display: flex; flex-direction: row; flex-wrap: nowrap;
+  gap: 28px; will-change: transform;
+  padding: 0 clamp(32px, 6vw, 100px);
+  align-items: stretch;
 }
 
-/* ─── Scroll Indicator Animation ──────────────────────────────── */
+/* =============================================
+   STAT NUMBER
+   ============================================= */
+.stat-number {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 300; color: var(--accent);
+  line-height: 1; letter-spacing: -0.02em;
+}
+
+/* Stats horizontal grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.stats-cell {
+  text-align: center;
+  padding: clamp(20px, 4vh, 40px) clamp(16px, 3vw, 32px);
+  position: relative;
+}
+.stats-cell:not(:last-child)::after {
+  content: '';
+  position: absolute; top: 50%; right: 0;
+  transform: translateY(-50%);
+  width: 1px; height: 60px;
+  background: var(--text); opacity: 0.12;
+}
+
+/* =============================================
+   SCROLLBAR
+   ============================================= */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+/* =============================================
+   KEYFRAMES
+   ============================================= */
 @keyframes scrollLine {
-  0%   { transform: scaleY(0); transform-origin: top; }
-  49%  { transform: scaleY(1); transform-origin: top; }
-  50%  { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
+  0%   { transform: scaleY(0); }
+  50%  { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
 }
 
-/* ─── Marquee ─────────────────────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-/* ─── Background Triangle Rotations ───────────────────────────── */
 @keyframes rotateSlow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -148,69 +252,322 @@ body {
 
 @keyframes driftA {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  33%      { transform: translate(18px, -12px) rotate(4deg); }
-  66%      { transform: translate(-8px, 16px) rotate(-3deg); }
+  33%      { transform: translate(20px, -14px) rotate(4deg); }
+  66%      { transform: translate(-10px, 18px) rotate(-3deg); }
 }
 
 @keyframes driftB {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  33%      { transform: translate(-14px, 10px) rotate(-5deg); }
-  66%      { transform: translate(10px, -8px) rotate(3deg); }
+  33%      { transform: translate(-16px, 12px) rotate(-5deg); }
+  66%      { transform: translate(12px, -10px) rotate(3deg); }
 }
 
-/* ─── Stat Number ─────────────────────────────────────────────── */
-.stat-number {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(56px, 8vw, 96px);
-  font-weight: 300;
-  color: var(--accent);
-  line-height: 1;
-  letter-spacing: -0.02em;
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-16px); }
 }
 
-/* ─── Horizontal Scroll Section ──────────────────────────────── */
-.h-scroll-section {
+@keyframes pulseRing {
+  0%   { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes techGridPan {
+  from { background-position: 0 0; }
+  to   { background-position: 32px 32px; }
+}
+
+@keyframes pathDraw {
+  from { stroke-dashoffset: 800; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* =============================================
+   FLOATING CONTACT BUTTONS
+   ============================================= */
+.floating-contact {
+  position: fixed; bottom: 28px; right: 28px; z-index: 150;
+  display: flex; flex-direction: column; gap: 14px; align-items: flex-end;
+}
+.floating-btn {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  transition: transform 0.25s var(--easing-reveal), box-shadow 0.25s ease;
   position: relative;
-  height: 500vh;
+  cursor: none;
+}
+.floating-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 36px rgba(0,0,0,0.25);
+}
+.floating-btn-pulse {
+  position: absolute; inset: -2px; border-radius: 50%;
+  animation: pulseRing 2.5s ease-out infinite;
 }
 
-.h-scroll-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
+/* =============================================
+   PAGE HERO
+   ============================================= */
+.page-hero {
+  min-height: 52vh; display: flex; flex-direction: column;
+  justify-content: flex-end; position: relative; overflow: hidden;
+  padding: clamp(110px, 16vh, 180px) clamp(20px, 5vw, 80px) clamp(52px, 7vh, 80px);
+}
+
+/* =============================================
+   SERVICE ROW (services page accordion)
+   ============================================= */
+.service-row {
+  border-top: 1px solid rgba(10,18,64,0.08);
+  transition: background 0.25s ease;
+}
+.service-row:last-child { border-bottom: 1px solid rgba(10,18,64,0.08); }
+.service-row:hover { background: rgba(0,212,255,0.03); }
+.service-row-inner {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
   align-items: center;
+  gap: clamp(16px, 3vw, 40px);
+  padding: clamp(20px, 3vh, 32px) 0;
+  cursor: default;
 }
 
-.h-scroll-rail {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+/* =============================================
+   INDUSTRY GRID
+   ============================================= */
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* =============================================
+   PARTNER GRID
+   ============================================= */
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
-  will-change: transform;
-  padding: 0 10vw;
 }
 
-/* ─── Global resets ───────────────────────────────────────────── */
-a {
-  color: inherit;
+/* =============================================
+   CONTACT SPLIT
+   ============================================= */
+.contact-split {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: start;
+}
+
+/* =============================================
+   FORM STYLES
+   ============================================= */
+.form-field {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.form-label {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text); opacity: 0.55;
+}
+.form-input {
+  background: rgba(13,27,94,0.04);
+  border: 1px solid rgba(13,27,94,0.12);
+  border-radius: 3px;
+  padding: 13px 16px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 14px; font-weight: 300;
+  color: var(--text);
+  width: 100%;
+  transition: border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-input:focus {
+  border-color: var(--accent);
+  background: rgba(0,212,255,0.04);
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.08);
+}
+.form-input::placeholder { color: var(--text); opacity: 0.3; }
+.form-textarea { resize: vertical; min-height: 130px; line-height: 1.7; }
+
+/* =============================================
+   NAV RESPONSIVE HELPERS
+   ============================================= */
+.nav-desktop { display: flex; }
+.nav-hamburger { display: none; }
+
+/* =============================================
+   MOBILE RESPONSIVE
+   ============================================= */
+@media (max-width: 1024px) {
+  .contact-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* --- Cursor --- */
+  body { cursor: auto; }
+
+  /* --- Horizontal scroll falls back to vertical card list --- */
+  .h-scroll-section {
+    height: auto !important;
+    padding-bottom: clamp(32px, 5vh, 60px);
+  }
+  .h-scroll-sticky {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+  .h-scroll-rail {
+    flex-direction: column !important;
+    padding: 0 clamp(16px, 5vw, 32px) !important;
+    gap: 16px !important;
+    overflow: visible !important;
+  }
+
+  /* Force service cards to full width on mobile (overrides inline styles) */
+  .h-scroll-rail .bracket-card {
+    width: 100% !important;
+    min-width: unset !important;
+    max-width: unset !important;
+    height: auto !important;
+    min-height: 280px !important;
+  }
+
+  /* --- Stats grid: 2-col on mobile --- */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+    max-width: 440px;
+  }
+  .stats-cell:nth-child(2n)::after { display: none; }
+  .stats-cell:nth-child(1),
+  .stats-cell:nth-child(2) {
+    border-bottom: 1px solid rgba(10,18,64,0.1);
+  }
+  .stat-number { font-size: clamp(40px, 10vw, 60px) !important; }
+
+  /* --- Service row on mobile --- */
+  .service-row-inner {
+    grid-template-columns: 40px 1fr !important;
+    gap: 12px !important;
+    padding: 20px 0 !important;
+  }
+  .service-row-inner > :last-child { display: none; }
+
+  /* --- Industry/Partner grids --- */
+  .industry-grid { grid-template-columns: 1fr 1fr !important; }
+  .partner-grid  { grid-template-columns: 1fr !important; }
+
+  /* --- Nav --- */
+  .nav-desktop  { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+
+  /* --- Page hero mobile --- */
+  .page-hero {
+    min-height: 44vh;
+    padding: clamp(80px, 14vh, 140px) clamp(16px, 5vw, 32px) clamp(36px, 6vh, 56px);
+  }
+
+  /* --- Section label margin --- */
+  .section-label { margin-bottom: 12px !important; }
+
+  /* --- Floating contact smaller on mobile --- */
+  .floating-btn { width: 46px !important; height: 46px !important; }
+  .floating-contact { bottom: 20px !important; right: 16px !important; }
+}
+
+@media (max-width: 480px) {
+  .industry-grid { grid-template-columns: 1fr !important; }
+  .stats-grid { grid-template-columns: 1fr 1fr !important; max-width: 340px; }
+  .tag-pill { font-size: 9px !important; padding: 3px 8px !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Custom Client/Server Event Handler fixes for Next.js build */
+.bracket-card {
+  transition: border-color 0.25s ease, transform 0.25s ease !important;
+}
+.bracket-card:hover {
+  border-color: rgba(0, 212, 255, 0.35) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* Demo Request button styling */
+.demo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent) !important;
+  color: #0D1B5E !important;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 2px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
   text-decoration: none;
 }
-
-button {
-  cursor: none;
-  border: none;
-  background: none;
-  font-family: inherit;
+.demo-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.25) !important;
 }
 
-img, svg {
-  display: block;
-  max-width: 100%;
+/* Circle arrow styling */
+.circle-arrow-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--accent);
+  transition: background 0.2s ease, border-color 0.2s ease !important;
+  cursor: pointer;
+}
+.circle-arrow-btn:hover {
+  background: rgba(0, 212, 255, 0.1) !important;
+  border-color: var(--accent) !important;
 }
 
-/* ─── Custom Scrollbar ────────────────────────────────────────── */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+/* Contact item styling */
+.contact-item {
+  transition: opacity 0.2s ease !important;
+}
+.contact-item:hover {
+  opacity: 0.7 !important;
+}
+

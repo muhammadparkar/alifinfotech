@@ -21,11 +21,8 @@ function lerpColor(a: string, b: string, t: number): string {
 // ─── Color stops ────────────────────────────────────────────────
 const COLOR_STOPS = [
   { scroll: 0.00, bg: '#F4F7FF', text: '#0A1240', accent: '#00D4FF' },
-  { scroll: 0.15, bg: '#E8EEFF', text: '#0A1240', accent: '#0D1B5E' },
-  { scroll: 0.30, bg: '#C8D4FF', text: '#0A1240', accent: '#0D1B5E' },
-  { scroll: 0.45, bg: '#8BA0E8', text: '#F4F7FF', accent: '#00D4FF' },
-  { scroll: 0.60, bg: '#3A52B8', text: '#F4F7FF', accent: '#7EEEFF' },
-  { scroll: 0.75, bg: '#1A2E8A', text: '#FFFFFF',  accent: '#00D4FF' },
+  { scroll: 0.65, bg: '#EEF1FC', text: '#0A1240', accent: '#00D4FF' },
+  { scroll: 0.73, bg: '#0D1B5E', text: '#FFFFFF',  accent: '#00D4FF' },
   { scroll: 1.00, bg: '#0D1B5E', text: '#FFFFFF',  accent: '#00D4FF' },
 ];
 

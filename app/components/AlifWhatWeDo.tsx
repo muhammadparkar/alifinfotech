@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import AlifImageCluster from './AlifImageCluster';
+import { PILLARS } from '../lib/data';
 
 export default function AlifWhatWeDo() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -9,155 +9,77 @@ export default function AlifWhatWeDo() {
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            el.querySelectorAll('.reveal-inner').forEach((inner, i) => {
-              (inner as HTMLElement).style.transitionDelay = `${0.1 * i}s`;
-              inner.classList.add('revealed');
-            });
-            el.querySelectorAll('.fade-up').forEach((fade, i) => {
-              setTimeout(() => fade.classList.add('visible'), i * 120);
-            });
-            observer.unobserve(el);
-          }
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        el.querySelectorAll('.reveal-inner').forEach((inner, i) => {
+          (inner as HTMLElement).style.transitionDelay = `${i * 0.1}s`;
+          inner.classList.add('revealed');
         });
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
+        el.querySelectorAll('.fade-up').forEach((f, i) => setTimeout(() => f.classList.add('visible'), i * 100));
+        obs.unobserve(el);
+      }
+    }, { threshold: 0.12 });
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="about"
-      style={{
-        padding: '120px 8vw',
-        display: 'grid',
-        gridTemplateColumns: '2fr 3fr',
-        gap: '80px',
-        alignItems: 'center',
-        maxWidth: '1400px',
-        margin: '0 auto',
-        width: '100%',
-        boxSizing: 'border-box',
-      }}
-    >
-      {/* Left column */}
-      <div>
-        <p
-          className="fade-up"
-          style={{
-            fontFamily: 'DM Sans, system-ui, sans-serif',
-            fontSize: '11px',
-            fontWeight: 400,
-            letterSpacing: '0.3em',
-            textTransform: 'uppercase',
-            color: 'var(--accent)',
-            marginBottom: '20px',
-          }}
-        >
-          What we do
-        </p>
+    <section ref={sectionRef} id="about" style={{ padding: 'clamp(60px, 10vh, 120px) 0' }}>
+      <div className="site-container" style={{ padding: '0 clamp(20px, 5vw, 80px)' }}>
 
-        <h2
-          style={{
-            fontFamily: 'Cormorant Garamond, Georgia, serif',
-            fontSize: 'clamp(36px, 5vw, 56px)',
-            fontWeight: 300,
-            fontStyle: 'italic',
-            color: 'var(--text)',
-            lineHeight: 1.15,
-            marginBottom: '24px',
-          }}
-        >
-          <span className="reveal-wrapper" style={{ display: 'block' }}>
-            <span className="reveal-inner" style={{ display: 'block', transitionDelay: '0.1s' }}>
-              Turning ideas into
-            </span>
-          </span>
-          <span className="reveal-wrapper" style={{ display: 'block' }}>
-            <span className="reveal-inner" style={{ display: 'block', transitionDelay: '0.22s' }}>
-              industry leaders.
-            </span>
-          </span>
-        </h2>
-
-        <p
-          className="fade-up"
-          style={{
-            fontFamily: 'DM Sans, system-ui, sans-serif',
-            fontSize: '15px',
-            fontWeight: 300,
-            color: 'var(--text-muted, #5A6A9A)',
-            lineHeight: 1.8,
-            maxWidth: '400px',
-            transitionDelay: '0.2s',
-          }}
-        >
-          We partner with ambitious founders to craft brands people remember,
-          products people love, and engineering that scales without compromise.
-        </p>
-
-        <div
-          className="fade-up"
-          style={{
-            marginTop: '40px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            transitionDelay: '0.3s',
-          }}
-        >
-          {['Strategic Brand Design', 'Product & UX Engineering', 'Scalable Architecture'].map(item => (
-            <div
-              key={item}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-              }}
-            >
-              <div
-                style={{
-                  width: '20px',
-                  height: '14px',
-                  clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-                  background: 'var(--accent)',
-                  flexShrink: 0,
-                }}
-              />
-              <span
-                style={{
-                  fontFamily: 'DM Sans, system-ui, sans-serif',
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  color: 'var(--text)',
-                }}
-              >
-                {item}
+        {/* Header */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(32px, 5vw, 80px)', marginBottom: 'clamp(48px, 6vh, 80px)', alignItems: 'end' }}>
+          <div>
+            <span className="section-label fade-up" style={{ marginBottom: '16px' }}>Why Alif Info Tech</span>
+            <h2 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 300, fontStyle: 'italic', color: 'var(--text)', lineHeight: 1.15 }}>
+              <span className="reveal-wrapper" style={{ display: 'block' }}>
+                <span className="reveal-inner" style={{ display: 'block' }}>Turning ideas into</span>
               </span>
+              <span className="reveal-wrapper" style={{ display: 'block' }}>
+                <span className="reveal-inner" style={{ display: 'block' }}>industry leaders.</span>
+              </span>
+            </h2>
+          </div>
+          <div className="fade-up" style={{ transitionDelay: '0.2s' }}>
+            <p style={{ fontFamily: 'DM Sans, system-ui, sans-serif', fontSize: 'clamp(14px, 1.5vw, 16px)', fontWeight: 300, color: 'var(--text)', opacity: 0.65, lineHeight: 1.8 }}>
+              From our head office in Doha to our technical centre in Hyderabad, we partner with businesses across the GCC and beyond — delivering AI, ERP, cloud, and digital product solutions that scale.
+            </p>
+          </div>
+        </div>
+
+        {/* 6 pillars grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
+          {PILLARS.map((pillar, i) => (
+            <div
+              key={pillar.title}
+              className="bracket-card fade-up"
+              style={{
+                background: 'linear-gradient(135deg, rgba(13,27,94,0.05), rgba(0,212,255,0.03))',
+                border: '1px solid rgba(13,27,94,0.08)',
+                borderRadius: '6px', padding: '28px',
+                transitionDelay: `${i * 0.08}s`,
+                transition: 'transform 0.3s ease, border-color 0.3s ease',
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0,212,255,0.3)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(13,27,94,0.08)'; }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                <div style={{ width: '28px', height: '20px', clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', background: 'var(--accent)', opacity: 0.7, flexShrink: 0 }} />
+                <h3 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: '22px', fontWeight: 400, fontStyle: 'italic', color: 'var(--text)' }}>
+                  {pillar.title}
+                </h3>
+              </div>
+              <p style={{ fontFamily: 'DM Sans', fontSize: '13px', fontWeight: 300, color: 'var(--text)', opacity: 0.6, lineHeight: 1.75 }}>
+                {pillar.desc}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Right column — image cluster */}
-      <div className="fade-up" style={{ transitionDelay: '0.15s' }}>
-        <AlifImageCluster />
-      </div>
-
       <style>{`
-        @media (max-width: 900px) {
-          #about {
-            grid-template-columns: 1fr !important;
-            padding: 80px 6vw !important;
-          }
+        @media (max-width: 768px) {
+          #about .header-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
