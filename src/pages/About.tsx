@@ -8,7 +8,8 @@ export default function About() {
       address: 'Office 12, Floor 4, B-Ring Road, Doha, State of Qatar',
       phone: '+974 6682 3215',
       email: 'info@alifinfotech.net',
-      support: 'Local Client Liaison & System SLA Auditing'
+      support: 'Local Client Liaison & System SLA Auditing',
+      image: '/doha_office.png'
     },
     {
       city: 'Hyderabad, India',
@@ -16,7 +17,8 @@ export default function About() {
       address: 'Plot 42, Hitech City Phase II, Madhapur, Hyderabad, TS, 500081, India',
       phone: '+91 40 0000 0000',
       email: 'india@alifinfotech.net',
-      support: 'Custom Coding, AI Model Training & QA Testing'
+      support: 'Custom Coding, AI Model Training & QA Testing',
+      image: '/hyderabad_lab.png'
     }
   ]
 
@@ -93,25 +95,37 @@ export default function About() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {offices.map((off, idx) => (
-              <div key={idx} className="p-8 rounded bg-brand-charcoal-light border border-brand-offwhite/5 space-y-6 flex flex-col justify-between hover:border-brand-gold/20 transition-all duration-300 glow-gold">
-                <div className="space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <h3 className="text-2xl font-serif text-brand-offwhite">{off.city}</h3>
-                      <span className="text-[9px] font-mono text-brand-gold uppercase tracking-widest font-semibold">{off.type}</span>
-                    </div>
-                    <MapPin className="w-5 h-5 text-brand-gray/60" />
+              <div key={idx} className="p-6 rounded bg-brand-charcoal-light border border-brand-offwhite/5 space-y-6 flex flex-col justify-between hover:border-brand-gold/20 transition-all duration-300 group glow-gold">
+                <div className="space-y-4 w-full">
+                  {/* Office image cover */}
+                  <div className="h-44 w-full rounded-lg overflow-hidden border border-brand-offwhite/5 relative">
+                    <img 
+                      src={off.image} 
+                      alt={off.city} 
+                      className="w-full h-full object-cover grayscale opacity-50 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-85 transition-all duration-500" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal-light via-transparent to-transparent opacity-60"></div>
                   </div>
+
+                  <div className="space-y-4">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h3 className="text-2xl font-serif text-brand-offwhite">{off.city}</h3>
+                        <span className="text-[9px] font-mono text-brand-gold uppercase tracking-widest font-semibold">{off.type}</span>
+                      </div>
+                      <MapPin className="w-5 h-5 text-brand-gray/60" />
+                    </div>
                   
-                  <div className="space-y-3.5 text-xs leading-relaxed text-brand-gray">
-                    <p>
-                      <strong className="text-brand-offwhite block mb-0.5 font-mono text-[9px] uppercase tracking-wider">Physical Address</strong>
-                      {off.address}
-                    </p>
-                    <p>
-                      <strong className="text-brand-offwhite block mb-0.5 font-mono text-[9px] uppercase tracking-wider">Primary Focus</strong>
-                      {off.support}
-                    </p>
+                    <div className="space-y-3.5 text-xs leading-relaxed text-brand-gray">
+                      <p>
+                        <strong className="text-brand-offwhite block mb-0.5 font-mono text-[9px] uppercase tracking-wider">Physical Address</strong>
+                        {off.address}
+                      </p>
+                      <p>
+                        <strong className="text-brand-offwhite block mb-0.5 font-mono text-[9px] uppercase tracking-wider">Primary Focus</strong>
+                        {off.support}
+                      </p>
+                    </div>
                   </div>
                 </div>
 

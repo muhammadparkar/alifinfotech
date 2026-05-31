@@ -174,6 +174,18 @@ a.border-brand-offwhite\/15:hover {
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
   border: 1px solid rgba(0, 180, 255, 0.05);
+  position: relative;
+}
+
+/* Dropdown Hover Bridge to prevent premature closing */
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: transparent;
 }
 
 @utility glow-gold {

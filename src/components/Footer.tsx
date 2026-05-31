@@ -19,18 +19,12 @@ export default function Footer({ setCurrentPage }: FooterProps) {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-brand-offwhite/5">
           {/* Brand Info */}
-          <div className="flex items-center gap-3 cursor-pointer select-none" onClick={() => handleLinkClick('home')}>
-            <div className="w-8 h-8 rounded bg-gradient-to-tr from-brand-gold-dark via-brand-gold to-brand-gold-light flex items-center justify-center font-bold text-brand-charcoal-dark text-base">
-              A
-            </div>
-            <div>
-              <span className="font-serif font-bold text-sm tracking-[0.06em] text-brand-offwhite uppercase block">
-                ALIF INFO TECH
-              </span>
-              <span className="block text-[7px] text-brand-gray tracking-[0.22em] font-mono -mt-0.5 uppercase">
-                INNOVATION EXPERTS
-              </span>
-            </div>
+          <div className="flex items-center cursor-pointer select-none" onClick={() => handleLinkClick('home')}>
+            <img
+              src="/index-logo.png"
+              alt="Alif Info Tech Logo"
+              className="h-9 w-auto object-contain transition-transform duration-300 hover:scale-[1.02]"
+            />
           </div>
 
           {/* Navigation links */}

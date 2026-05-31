@@ -77,22 +77,15 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         
-        {/* Brand Logo */}
         <div
           onClick={() => handleLinkClick('home')}
-          className="flex items-center gap-2.5 cursor-pointer group"
+          className="flex items-center cursor-pointer group"
         >
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-brand-gold-dark via-brand-gold to-brand-gold-light flex items-center justify-center font-bold text-brand-charcoal-dark text-lg shadow-md shadow-brand-gold/10 group-hover:scale-[1.02] transition-transform duration-300">
-            A
-          </div>
-          <div>
-            <span className="font-serif font-bold text-base tracking-[0.06em] text-brand-offwhite select-none uppercase">
-              ALIF INFO TECH
-            </span>
-            <span className="block text-[7px] text-brand-gray tracking-[0.22em] font-mono -mt-0.5 uppercase select-none">
-              INNOVATION EXPERTS
-            </span>
-          </div>
+          <img
+            src="/index-logo.png"
+            alt="Alif Info Tech Logo"
+            className="h-10 w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300"
+          />
         </div>
 
         {/* Desktop Navigation Links */}

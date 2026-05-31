@@ -289,13 +289,13 @@ export default function Home({ setCurrentPage }: HomeProps) {
 
           {/* Abstract geometric graphic indicating precision engineering */}
           <div className="lg:col-span-4 hidden lg:flex justify-end pr-6">
-            <div className="w-72 h-72 border border-brand-offwhite/5 relative rounded-full flex items-center justify-center animate-spin" style={{ animationDuration: '60s' }}>
-              <div className="absolute inset-4 border border-dashed border-brand-gold/10 rounded-full"></div>
-              <div className="absolute inset-16 border border-brand-offwhite/5 rounded-full"></div>
-              <div className="w-3 h-3 bg-brand-gold absolute top-0 left-1/2 -translate-x-1/2 rounded-full"></div>
-              <div className="w-1.5 h-1.5 bg-brand-sand absolute bottom-8 left-12 rounded-full"></div>
-              <div className="absolute w-full h-[1px] bg-brand-offwhite/5 top-1/2 left-0"></div>
-              <div className="absolute h-full w-[1px] bg-brand-offwhite/5 left-1/2 top-0"></div>
+            <div className="relative w-80 aspect-square rounded-2xl overflow-hidden border border-brand-offwhite/10 glass-panel p-2 shadow-2xl glow-gold hover:scale-[1.01] transition-transform duration-500">
+              <img
+                src="/hero_tech_graphic.png"
+                alt="System Architecture blueprint"
+                className="w-full h-full object-cover rounded-xl opacity-80 mix-blend-lighten"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-transparent to-transparent opacity-40"></div>
             </div>
           </div>
         </div>
