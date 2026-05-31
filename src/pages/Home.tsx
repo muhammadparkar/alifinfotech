@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { ArrowRight, ChevronRight, CheckCircle2, Shield, Brain, Smartphone, Database, Cloud, LineChart, Code, Check, Cpu } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+
 
 interface HomeProps {
   setCurrentPage: (page: string) => void;
@@ -252,25 +254,57 @@ export default function Home({ setCurrentPage }: HomeProps) {
       <div className="absolute top-[60vh] left-[5%] w-[400px] h-[400px] bg-brand-sand/3 rounded-full blur-[180px] pointer-events-none animate-pulse-glow" style={{ animationDelay: '-6s' }}></div>
 
       {/* 1. HERO SECTION (Asymmetric Left-Aligned Editorial Style) */}
-      <section className="relative min-h-screen flex items-center px-6 pt-28 pb-16 z-10">
+      <section className="relative min-h-screen flex items-center px-6 pt-28 pb-16 z-10 overflow-hidden">
+        {/* Animated Hero Background Illustration */}
+        <motion.div 
+          initial={{ opacity: 0, x: 60, scale: 0.98 }}
+          animate={{ opacity: 0.25, x: 0, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-[60%] h-[90%] bg-contain bg-right bg-no-repeat pointer-events-none mix-blend-screen z-0"
+          style={{ backgroundImage: "url('/hero_tech_graphic.png')" }}
+        />
+        {/* Soft edge masking overlays to blend the graphic into the near-black background */}
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-transparent to-brand-charcoal opacity-95 pointer-events-none z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-charcoal via-transparent to-brand-charcoal opacity-90 pointer-events-none z-0"></div>
+
         <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0 opacity-80" />
         
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-          <div className="lg:col-span-8 space-y-8 text-left">
-            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded bg-brand-charcoal-light border border-brand-offwhite/5 text-[10px] font-mono text-brand-gold uppercase tracking-wider select-none">
+          <div className="lg:col-span-9 space-y-8 text-left relative z-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded bg-brand-charcoal-light border border-brand-offwhite/5 text-[10px] font-mono text-brand-gold uppercase tracking-wider select-none"
+            >
               <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
               IT Solutions WLL | Doha (HQ) & Hyderabad
-            </div>
+            </motion.div>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif text-brand-offwhite tracking-tight leading-[1.08] max-w-4xl">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+              className="text-4xl sm:text-6xl lg:text-7xl font-serif text-brand-offwhite tracking-tight leading-[1.08] max-w-4xl"
+            >
               We architect <span className="text-gradient-gold italic font-normal">high-performance</span> digital systems for leading enterprises.
-            </h1>
+            </motion.h1>
 
-            <p className="text-sm md:text-base text-brand-gray max-w-2xl font-sans leading-relaxed">
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+              className="text-sm md:text-base text-brand-gray max-w-2xl font-sans leading-relaxed"
+            >
               Alif Info Tech engineers reliable database systems, certified ERP integrations, custom cloud applications, and AI pipelines to optimize B2B workflows across the Gulf region and India.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row items-start gap-4 pt-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" }}
+              className="flex flex-col sm:flex-row items-start gap-4 pt-4"
+            >
               <button
                 onClick={() => handleLinkClick('solutions')}
                 className="w-full sm:w-auto px-8 py-4 rounded bg-brand-gold hover:bg-brand-gold-light text-brand-charcoal-dark font-semibold text-xs transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group shadow-md shadow-brand-gold/10"
@@ -284,19 +318,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
               >
                 Request Architecture Consultation
               </button>
-            </div>
-          </div>
-
-          {/* Abstract geometric graphic indicating precision engineering */}
-          <div className="lg:col-span-4 hidden lg:flex justify-end pr-6">
-            <div className="relative w-80 aspect-square rounded-2xl overflow-hidden border border-brand-offwhite/10 glass-panel p-2 shadow-2xl glow-gold hover:scale-[1.01] transition-transform duration-500">
-              <img
-                src="/hero_tech_graphic.png"
-                alt="System Architecture blueprint"
-                className="w-full h-full object-cover rounded-xl opacity-80 mix-blend-lighten"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-transparent to-transparent opacity-40"></div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -363,43 +385,52 @@ export default function Home({ setCurrentPage }: HomeProps) {
             </div>
 
             {/* Accordion Right Expanded Context */}
-            <div className="col-span-7 p-8 rounded bg-brand-charcoal-light border border-brand-offwhite/5 min-h-[380px] flex flex-col justify-between relative glow-gold">
+            <div className="col-span-7 p-8 rounded bg-brand-charcoal-light border border-brand-offwhite/5 min-h-[380px] flex flex-col justify-between relative glow-gold overflow-hidden">
               <div className="absolute top-0 right-0 w-48 h-48 bg-brand-gold/2 rounded-full blur-3xl pointer-events-none"></div>
               
-              {servicesList.map((svc) => {
-                if (svc.id !== activeServiceTab) return null;
-                return (
-                  <div key={svc.id} className="space-y-6 animate-fadeIn">
-                    <div className="space-y-2">
-                      <span className="text-[9px] font-mono text-brand-gold bg-brand-gold/5 px-2.5 py-1 rounded border border-brand-gold/10">
-                        {svc.tech}
-                      </span>
-                      <h3 className="text-2xl font-serif text-brand-offwhite pt-3">{svc.title}</h3>
-                      <p className="text-xs text-brand-gray leading-relaxed max-w-xl">{svc.desc}</p>
-                    </div>
+              <AnimatePresence mode="wait">
+                {servicesList.map((svc) => {
+                  if (svc.id !== activeServiceTab) return null;
+                  return (
+                    <motion.div
+                      key={svc.id}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -12 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="space-y-6 flex-grow flex flex-col justify-between"
+                    >
+                      <div className="space-y-2">
+                        <span className="text-[9px] font-mono text-brand-gold bg-brand-gold/5 px-2.5 py-1 rounded border border-brand-gold/10">
+                          {svc.tech}
+                        </span>
+                        <h3 className="text-2xl font-serif text-brand-offwhite pt-3">{svc.title}</h3>
+                        <p className="text-xs text-brand-gray leading-relaxed max-w-xl">{svc.desc}</p>
+                      </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-brand-offwhite/5">
-                      {svc.bullets.map((bullet, idx) => (
-                        <div key={idx} className="p-3.5 rounded bg-brand-charcoal border border-brand-offwhite/5 flex items-start gap-2.5">
-                          <Check className="w-3.5 h-3.5 text-brand-gold shrink-0 mt-0.5" />
-                          <span className="text-[11px] text-brand-offwhite/85 font-medium leading-snug">{bullet}</span>
-                        </div>
-                      ))}
-                    </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-brand-offwhite/5">
+                        {svc.bullets.map((bullet, idx) => (
+                          <div key={idx} className="p-3.5 rounded bg-brand-charcoal border border-brand-offwhite/5 flex items-start gap-2.5">
+                            <Check className="w-3.5 h-3.5 text-brand-gold shrink-0 mt-0.5" />
+                            <span className="text-[11px] text-brand-offwhite/85 font-medium leading-snug">{bullet}</span>
+                          </div>
+                        ))}
+                      </div>
 
-                    <div className="pt-6 flex items-center justify-between">
-                      <span className="text-[10px] text-brand-gray font-mono">Deployment Matrix: Qatar & India Staged</span>
-                      <button
-                        onClick={() => handleLinkClick('services')}
-                        className="px-5 py-2.5 rounded bg-brand-gold hover:bg-brand-gold-light text-brand-charcoal-dark font-semibold text-[11px] transition-all cursor-pointer flex items-center gap-1.5"
-                      >
-                        Technical Scope Specs
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+                      <div className="pt-6 flex items-center justify-between">
+                        <span className="text-[10px] text-brand-gray font-mono">Deployment Matrix: Qatar & India Staged</span>
+                        <button
+                          onClick={() => handleLinkClick('services')}
+                          className="px-5 py-2.5 rounded bg-brand-gold hover:bg-brand-gold-light text-brand-charcoal-dark font-semibold text-[11px] transition-all cursor-pointer flex items-center gap-1.5"
+                        >
+                          Technical Scope Specs
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
             </div>
           </div>
 
@@ -465,226 +496,249 @@ export default function Home({ setCurrentPage }: HomeProps) {
           </div>
 
           {/* Active Product Panel Showcase */}
-          <div className="p-8 rounded bg-brand-charcoal-light border border-brand-offwhite/5 glow-gold">
-            {activeProductTab === 'ams' && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div className="lg:col-span-6 space-y-6">
-                  <div className="text-[9px] font-mono text-brand-gold uppercase tracking-widest bg-brand-gold/5 px-2 py-1 rounded border border-brand-gold/10 inline-block">
-                    Module: Calibration & Licensing audits
+          <div className="p-8 rounded bg-brand-charcoal-light border border-brand-offwhite/5 glow-gold overflow-hidden">
+            <AnimatePresence mode="wait">
+              {activeProductTab === 'ams' && (
+                <motion.div
+                  key="ams"
+                  initial={{ opacity: 0, x: 15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -15 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+                >
+                  <div className="lg:col-span-6 space-y-6">
+                    <div className="text-[9px] font-mono text-brand-gold uppercase tracking-widest bg-brand-gold/5 px-2 py-1 rounded border border-brand-gold/10 inline-block">
+                      Module: Calibration & Licensing audits
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-serif text-brand-offwhite">Alif Asset Management System</h3>
+                    <p className="text-xs text-brand-gray leading-relaxed">
+                      A consolidated audit log tracking local desktop nodes, server instances, company laptops, and vehicle fleets. Syncs depreciation indexes automatically using IFRS and regional tax policies.
+                    </p>
+                    <ul className="space-y-2.5 text-xs text-brand-offwhite/90">
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-brand-gold" /> QR/Barcode label scanner integrations.
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-brand-gold" /> Auto alerts on software license expirations.
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-brand-gold" /> Preventative hardware maintenance calendars.
+                      </li>
+                    </ul>
+                    <button
+                      onClick={() => handleLinkClick('products')}
+                      className="px-6 py-3.5 rounded bg-brand-gold hover:bg-brand-gold-light text-brand-charcoal-dark font-semibold text-xs transition-colors cursor-pointer"
+                    >
+                      Request AMS Demo Access
+                    </button>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-serif text-brand-offwhite">Alif Asset Management System</h3>
-                  <p className="text-xs text-brand-gray leading-relaxed">
-                    A consolidated audit log tracking local desktop nodes, server instances, company laptops, and vehicle fleets. Syncs depreciation indexes automatically using IFRS and regional tax policies.
-                  </p>
-                  <ul className="space-y-2.5 text-xs text-brand-offwhite/90">
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-brand-gold" /> QR/Barcode label scanner integrations.
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-brand-gold" /> Auto alerts on software license expirations.
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-brand-gold" /> Preventative hardware maintenance calendars.
-                    </li>
-                  </ul>
-                  <button
-                    onClick={() => handleLinkClick('products')}
-                    className="px-6 py-3.5 rounded bg-brand-gold hover:bg-brand-gold-light text-brand-charcoal-dark font-semibold text-xs transition-colors cursor-pointer"
-                  >
-                    Request AMS Demo Access
-                  </button>
-                </div>
 
-                {/* AMS High Fidelity mockup */}
-                <div className="lg:col-span-6 p-5 rounded bg-brand-charcoal-dark border border-brand-offwhite/5 font-mono text-[10px] space-y-4 shadow-xl">
-                  <div className="flex justify-between items-center border-b border-brand-offwhite/5 pb-3">
-                    <span className="text-brand-gold text-[9px]">AMS CORE LEDGER // STABLE</span>
-                    <span className="text-[8px] text-brand-gray font-mono">UPDATED: JUST NOW</span>
-                  </div>
-                  <div className="space-y-2">
-                    {[
-                      { id: 'AST-9021', name: 'Doha Rack Node B1', type: 'Server Node', status: 'Optimal' },
-                      { id: 'AST-8812', name: 'Hitech Node C4', type: 'Dev VM Cluster', status: 'Calibration' },
-                      { id: 'AST-7431', name: 'HQ Dev Node 18', type: 'Workstation Mac', status: 'Optimal' }
-                    ].map((asset) => (
-                      <div
-                        key={asset.id}
-                        onClick={() => setSelectedAssetId(asset.id)}
-                        className={`p-2.5 rounded border transition-colors cursor-pointer flex justify-between ${
-                          selectedAssetId === asset.id ? 'bg-brand-charcoal border-brand-gold/30 text-brand-gold' : 'border-brand-offwhite/5 text-brand-gray hover:bg-brand-charcoal/40'
-                        }`}
-                      >
-                        <span>{asset.id} - {asset.name}</span>
-                        <span className={`w-1.5 h-1.5 rounded-full self-center ${asset.status === 'Optimal' ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
+                  {/* AMS High Fidelity mockup */}
+                  <div className="lg:col-span-6 p-5 rounded bg-brand-charcoal-dark border border-brand-offwhite/5 font-mono text-[10px] space-y-4 shadow-xl">
+                    <div className="flex justify-between items-center border-b border-brand-offwhite/5 pb-3">
+                      <span className="text-brand-gold text-[9px]">AMS CORE LEDGER // STABLE</span>
+                      <span className="text-[8px] text-brand-gray font-mono">UPDATED: JUST NOW</span>
+                    </div>
+                    <div className="space-y-2">
+                      {[
+                        { id: 'AST-9021', name: 'Doha Rack Node B1', type: 'Server Node', status: 'Optimal' },
+                        { id: 'AST-8812', name: 'Hitech Node C4', type: 'Dev VM Cluster', status: 'Calibration' },
+                        { id: 'AST-7431', name: 'HQ Dev Node 18', type: 'Workstation Mac', status: 'Optimal' }
+                      ].map((asset) => (
+                        <div
+                          key={asset.id}
+                          onClick={() => setSelectedAssetId(asset.id)}
+                          className={`p-2.5 rounded border transition-colors cursor-pointer flex justify-between ${
+                            selectedAssetId === asset.id ? 'bg-brand-charcoal border-brand-gold/30 text-brand-gold' : 'border-brand-offwhite/5 text-brand-gray hover:bg-brand-charcoal/40'
+                          }`}
+                        >
+                          <span>{asset.id} - {asset.name}</span>
+                          <span className={`w-1.5 h-1.5 rounded-full self-center ${asset.status === 'Optimal' ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
+                        </div>
+                      ))}
+                    </div>
+                    {selectedAssetId && (
+                      <div className="p-3 rounded bg-brand-charcoal border border-brand-offwhite/5 text-[9px] text-brand-offwhite space-y-1">
+                        <div>SPEC: 2.8GHz 24-Core / 128GB RAM</div>
+                        <div className="text-brand-gray">Audit sync status: Standard compliance verified by Doha HQ auditor.</div>
                       </div>
-                    ))}
+                    )}
                   </div>
-                  {selectedAssetId && (
-                    <div className="p-3 rounded bg-brand-charcoal border border-brand-offwhite/5 text-[9px] text-brand-offwhite space-y-1">
-                      <div>SPEC: 2.8GHz 24-Core / 128GB RAM</div>
-                      <div className="text-brand-gray">Audit sync status: Standard compliance verified by Doha HQ auditor.</div>
+                </motion.div>
+              )}
+
+              {activeProductTab === 'wms' && (
+                <motion.div
+                  key="wms"
+                  initial={{ opacity: 0, x: 15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -15 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+                >
+                  <div className="lg:col-span-6 space-y-6">
+                    <div className="text-[9px] font-mono text-brand-gold uppercase tracking-widest bg-brand-gold/5 px-2 py-1 rounded border border-brand-gold/10 inline-block">
+                      Module: FIFO Warehousing Dispatch
                     </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {activeProductTab === 'wms' && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div className="lg:col-span-6 space-y-6">
-                  <div className="text-[9px] font-mono text-brand-gold uppercase tracking-widest bg-brand-gold/5 px-2 py-1 rounded border border-brand-gold/10 inline-block">
-                    Module: FIFO Warehousing Dispatch
+                    <h3 className="text-2xl sm:text-3xl font-serif text-brand-offwhite">Alif Warehouse Management System</h3>
+                    <p className="text-xs text-brand-gray leading-relaxed">
+                      Designed to control stock routes, coordinate pick schedules, and check dispatch latency. Direct link logs automatically feed into third-party inventories like Logic or Wings ERP.
+                    </p>
+                    <ul className="space-y-2.5 text-xs text-brand-offwhite/90">
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-brand-gold" /> Auto Pick Route algorithms for staff walks.
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-brand-gold" /> Threshold warnings to draft purchase logs.
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-brand-gold" /> Cross-dock routing capabilities.
+                      </li>
+                    </ul>
+                    <button
+                      onClick={() => handleLinkClick('products')}
+                      className="px-6 py-3.5 rounded bg-brand-gold hover:bg-brand-gold-light text-brand-charcoal-dark font-semibold text-xs transition-colors cursor-pointer"
+                    >
+                      Request WMS Demo Access
+                    </button>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-serif text-brand-offwhite">Alif Warehouse Management System</h3>
-                  <p className="text-xs text-brand-gray leading-relaxed">
-                    Designed to control stock routes, coordinate pick schedules, and check dispatch latency. Direct link logs automatically feed into third-party inventories like Logic or Wings ERP.
-                  </p>
-                  <ul className="space-y-2.5 text-xs text-brand-offwhite/90">
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-brand-gold" /> Auto Pick Route algorithms for staff walks.
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-brand-gold" /> Threshold warnings to draft purchase logs.
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-brand-gold" /> Cross-dock routing capabilities.
-                    </li>
-                  </ul>
-                  <button
-                    onClick={() => handleLinkClick('products')}
-                    className="px-6 py-3.5 rounded bg-brand-gold hover:bg-brand-gold-light text-brand-charcoal-dark font-semibold text-xs transition-colors cursor-pointer"
-                  >
-                    Request WMS Demo Access
-                  </button>
-                </div>
 
-                {/* WMS Bin visualizer mockup */}
-                <div className="lg:col-span-6 p-5 rounded bg-brand-charcoal-dark border border-brand-offwhite/5 font-mono text-[10px] space-y-4 shadow-xl">
-                  <div className="flex justify-between items-center border-b border-brand-offwhite/5 pb-2">
-                    <span className="text-brand-gold text-[9px]">ZONE A PICKING CELLS</span>
-                    <span className="text-[8px] text-brand-gray">LINK: ACTIVE</span>
+                  {/* WMS Bin visualizer mockup */}
+                  <div className="lg:col-span-6 p-5 rounded bg-brand-charcoal-dark border border-brand-offwhite/5 font-mono text-[10px] space-y-4 shadow-xl">
+                    <div className="flex justify-between items-center border-b border-brand-offwhite/5 pb-2">
+                      <span className="text-brand-gold text-[9px]">ZONE A PICKING CELLS</span>
+                      <span className="text-[8px] text-brand-gray">LINK: ACTIVE</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { code: 'A1-01', count: 120, status: 'Stored' },
+                        { code: 'A1-02', count: 45, status: 'Picking' },
+                        { code: 'A1-03', count: 0, status: 'Empty' },
+                        { code: 'B2-01', count: 98, status: 'Stored' },
+                        { code: 'B2-02', count: 150, status: 'Stored' },
+                        { code: 'B2-03', count: 0, status: 'Empty' }
+                      ].map((bin) => (
+                        <div
+                          key={bin.code}
+                          onClick={() => setWmsActiveBin(bin.code)}
+                          className={`p-2.5 rounded border text-center transition-colors cursor-pointer flex flex-col justify-between ${
+                            wmsActiveBin === bin.code ? 'bg-brand-charcoal border-brand-gold/30 text-brand-gold' : 'border-brand-offwhite/5 text-brand-gray hover:bg-brand-charcoal/40'
+                          }`}
+                        >
+                          <span className="text-[8px] text-brand-gray">{bin.code}</span>
+                          <span className="text-xs font-bold font-mono mt-1">{bin.count}</span>
+                          <span className="text-[7px] text-brand-gray/60 mt-1 uppercase">{bin.status}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    {[
-                      { code: 'A1-01', count: 120, status: 'Stored' },
-                      { code: 'A1-02', count: 45, status: 'Picking' },
-                      { code: 'A1-03', count: 0, status: 'Empty' },
-                      { code: 'B2-01', count: 98, status: 'Stored' },
-                      { code: 'B2-02', count: 150, status: 'Stored' },
-                      { code: 'B2-03', count: 0, status: 'Empty' }
-                    ].map((bin) => (
-                      <div
-                        key={bin.code}
-                        onClick={() => setWmsActiveBin(bin.code)}
-                        className={`p-2.5 rounded border text-center transition-colors cursor-pointer flex flex-col justify-between ${
-                          wmsActiveBin === bin.code ? 'bg-brand-charcoal border-brand-gold/30 text-brand-gold' : 'border-brand-offwhite/5 text-brand-gray hover:bg-brand-charcoal/40'
-                        }`}
-                      >
-                        <span className="text-[8px] text-brand-gray">{bin.code}</span>
-                        <span className="text-xs font-bold font-mono mt-1">{bin.count}</span>
-                        <span className="text-[7px] text-brand-gray/60 mt-1 uppercase">{bin.status}</span>
+                </motion.div>
+              )}
+
+              {activeProductTab === 'mobile' && (
+                <motion.div
+                  key="mobile"
+                  initial={{ opacity: 0, x: 15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -15 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+                >
+                  <div className="lg:col-span-6 space-y-6">
+                    <div className="text-[9px] font-mono text-brand-gold uppercase tracking-widest bg-brand-gold/5 px-2 py-1 rounded border border-brand-gold/10 inline-block">
+                      Module: Barcode Check-ins & GPS
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-serif text-brand-offwhite">Alif Workflows Mobile App</h3>
+                    <p className="text-xs text-brand-gray leading-relaxed">
+                      Deploys offline-first operations for on-ground mechanics, delivery dispatchers, and site auditors. Scans barcode labels, saves coordinates, and holds signature buffers locally until an active web link is restored.
+                    </p>
+                    <ul className="space-y-2.5 text-xs text-brand-offwhite/90">
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-brand-gold" /> Geolocation tagging on service dispatch jobs.
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-brand-gold" /> Offline-first signature buffers and data queues.
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-brand-gold" /> Bluetooth link for thermal receipt printers.
+                      </li>
+                    </ul>
+                    <button
+                      onClick={() => handleLinkClick('products')}
+                      className="px-6 py-3.5 rounded bg-brand-gold hover:bg-brand-gold-light text-brand-charcoal-dark font-semibold text-xs transition-colors cursor-pointer"
+                    >
+                      Request Mobile Suite Spec
+                    </button>
+                  </div>
+
+                  {/* Mobile Simulator mockup */}
+                  <div className="lg:col-span-6 flex justify-center">
+                    <div className="w-56 aspect-[9/18] rounded-[32px] border-4 border-brand-charcoal bg-brand-charcoal-dark p-3 flex flex-col justify-between shadow-2xl relative overflow-hidden border-brand-offwhite/10">
+                      <div className="w-20 h-4 bg-brand-charcoal rounded-b-lg absolute top-0 left-1/2 -translate-x-1/2 flex items-center justify-center">
+                        <div className="w-8 h-1 bg-brand-charcoal-light rounded-full"></div>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeProductTab === 'mobile' && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div className="lg:col-span-6 space-y-6">
-                  <div className="text-[9px] font-mono text-brand-gold uppercase tracking-widest bg-brand-gold/5 px-2 py-1 rounded border border-brand-gold/10 inline-block">
-                    Module: Mobile Workflows & Geotags
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-serif text-brand-offwhite">Alif Mobile Application</h3>
-                  <p className="text-xs text-brand-gray leading-relaxed">
-                    Custom operational apps enabling field agents to scan barcodes, input signatures, and register deliveries in real time. Works offline, buffering transactions until Internet connection is established.
-                  </p>
-                  <ul className="space-y-2.5 text-xs text-brand-offwhite/90">
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-brand-gold" /> Geolocation tags mapped to delivery entries.
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-brand-gold" /> Camera scanner utilities with local SQLite sync.
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-brand-gold" /> Bluetooth link for thermal receipt printers.
-                    </li>
-                  </ul>
-                  <button
-                    onClick={() => handleLinkClick('products')}
-                    className="px-6 py-3.5 rounded bg-brand-gold hover:bg-brand-gold-light text-brand-charcoal-dark font-semibold text-xs transition-colors cursor-pointer"
-                  >
-                    Request Mobile Suite Spec
-                  </button>
-                </div>
-
-                {/* Mobile Simulator mockup */}
-                <div className="lg:col-span-6 flex justify-center">
-                  <div className="w-56 aspect-[9/18] rounded-[32px] border-4 border-brand-charcoal bg-brand-charcoal-dark p-3 flex flex-col justify-between shadow-2xl relative overflow-hidden border-brand-offwhite/10">
-                    <div className="w-20 h-4 bg-brand-charcoal rounded-b-lg absolute top-0 left-1/2 -translate-x-1/2 flex items-center justify-center">
-                      <div className="w-8 h-1 bg-brand-charcoal-light rounded-full"></div>
-                    </div>
-                    <div className="flex justify-between items-center text-[7px] text-brand-gray font-mono pt-1">
-                      <span>9:41 AM</span>
-                      <span>LTE [■]</span>
-                    </div>
-                    <div className="flex-grow my-3 rounded-xl bg-brand-charcoal p-3 flex flex-col justify-between border border-brand-offwhite/5">
-                      {mobileScreen === 'scan' ? (
-                        <>
-                          <div className="space-y-2.5">
-                            <div className="flex justify-between items-center border-b border-brand-offwhite/5 pb-1.5 text-[8px] text-brand-offwhite font-mono">
-                              <span>ALIF SCANNER CORE</span>
-                              <span className="text-emerald-400">READY</span>
-                            </div>
-                            <div className="aspect-square border border-dashed border-brand-gold/30 rounded flex flex-col items-center justify-center relative overflow-hidden">
-                              {scanActive && <div className="absolute left-0 right-0 h-0.5 bg-brand-gold animate-bounce"></div>}
-                              <Cpu className="w-6 h-6 text-brand-gold/30" />
-                              <span className="text-[6px] text-brand-gray font-mono uppercase mt-1">Awaiting QR scan</span>
-                            </div>
-                          </div>
-                          <button
-                            onClick={() => {
-                              setScanActive(true)
-                              setTimeout(() => {
-                                setMobileScreen('signature')
-                                setScanActive(false)
-                              }, 1500)
-                            }}
-                            className="w-full py-2 rounded bg-brand-gold text-brand-charcoal-dark font-mono text-[8px] font-semibold text-center cursor-pointer"
-                          >
-                            {scanActive ? 'Scanning...' : 'Trigger Camera Sweep'}
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <div className="space-y-2">
-                            <div className="flex justify-between items-center border-b border-brand-offwhite/5 pb-1.5 text-[8px] text-brand-offwhite font-mono">
-                              <span>VERIFIED // AST-9021</span>
-                            </div>
-                            <div className="p-2.5 bg-brand-charcoal-dark border border-brand-offwhite/5 rounded text-center">
-                              <span className="text-[6px] text-brand-gray block uppercase font-mono mb-1">Cursive Signature</span>
-                              <div className="h-10 border border-dashed border-brand-offwhite/5 rounded flex items-center justify-center bg-brand-charcoal/20">
-                                <svg className="w-20 h-6 text-brand-gold" viewBox="0 0 100 30" fill="none">
-                                  <path d="M10 20 Q 30 5, 45 25 T 80 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                                </svg>
+                      <div className="flex justify-between items-center text-[7px] text-brand-gray font-mono pt-1">
+                        <span>9:41 AM</span>
+                        <span>LTE [■]</span>
+                      </div>
+                      <div className="flex-grow my-3 rounded-xl bg-brand-charcoal p-3 flex flex-col justify-between border border-brand-offwhite/5">
+                        {mobileScreen === 'scan' ? (
+                          <>
+                            <div className="space-y-2.5">
+                              <div className="flex justify-between items-center border-b border-brand-offwhite/5 pb-1.5 text-[8px] text-brand-offwhite font-mono">
+                                <span>ALIF SCANNER CORE</span>
+                                <span className="text-emerald-400">READY</span>
+                              </div>
+                              <div className="aspect-square border border-dashed border-brand-gold/30 rounded flex flex-col items-center justify-center relative overflow-hidden">
+                                {scanActive && <div className="absolute left-0 right-0 h-0.5 bg-brand-gold animate-bounce"></div>}
+                                <Cpu className="w-6 h-6 text-brand-gold/30" />
+                                <span className="text-[6px] text-brand-gray font-mono uppercase mt-1">Awaiting QR scan</span>
                               </div>
                             </div>
-                          </div>
-                          <button
-                            onClick={() => setMobileScreen('scan')}
-                            className="w-full py-2 rounded border border-brand-offwhite/5 text-brand-offwhite font-mono text-[8px] text-center cursor-pointer hover:bg-brand-charcoal-dark"
-                          >
-                            Reset Scanner
-                          </button>
-                        </>
-                      )}
+                            <button
+                              onClick={() => {
+                                setScanActive(true)
+                                setTimeout(() => {
+                                  setMobileScreen('signature')
+                                  setScanActive(false)
+                                }, 1500)
+                              }}
+                              className="w-full py-2 rounded bg-brand-gold text-brand-charcoal-dark font-mono text-[8px] font-semibold text-center cursor-pointer"
+                            >
+                              {scanActive ? 'Scanning...' : 'Trigger Camera Sweep'}
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <div className="space-y-2">
+                              <div className="flex justify-between items-center border-b border-brand-offwhite/5 pb-1.5 text-[8px] text-brand-offwhite font-mono">
+                                <span>VERIFIED // AST-9021</span>
+                              </div>
+                              <div className="p-2.5 bg-brand-charcoal-dark border border-brand-offwhite/5 rounded text-center">
+                                <span className="text-[6px] text-brand-gray block uppercase font-mono mb-1">Cursive Signature</span>
+                                <div className="h-10 border border-dashed border-brand-offwhite/5 rounded flex items-center justify-center bg-brand-charcoal/20">
+                                  <svg className="w-20 h-6 text-brand-gold" viewBox="0 0 100 30" fill="none">
+                                    <path d="M10 20 Q 30 5, 45 25 T 80 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                            <button
+                              onClick={() => setMobileScreen('scan')}
+                              className="w-full py-2 rounded border border-brand-offwhite/5 text-brand-offwhite font-mono text-[8px] text-center cursor-pointer hover:bg-brand-charcoal-dark"
+                            >
+                              Reset Scanner
+                            </button>
+                          </>
+                        )}
+                      </div>
+                      <div className="w-16 h-0.5 bg-brand-gray/30 rounded-full mx-auto -mt-1"></div>
                     </div>
-                    <div className="w-16 h-0.5 bg-brand-gray/30 rounded-full mx-auto -mt-1"></div>
                   </div>
-                </div>
-              </div>
-            )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </section>
